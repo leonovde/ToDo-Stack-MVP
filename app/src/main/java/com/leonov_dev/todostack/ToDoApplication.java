@@ -1,6 +1,7 @@
 package com.leonov_dev.todostack;
 
 import com.leonov_dev.todostack.data.TasksRepository;
+import com.leonov_dev.todostack.di.DaggerAppComponent;
 
 import javax.inject.Inject;
 
@@ -14,7 +15,7 @@ public class ToDoApplication extends DaggerApplication {
 
     @Override
     protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
-        return null;
+        return DaggerAppComponent.builder().application(this).build();
     }
 
 }

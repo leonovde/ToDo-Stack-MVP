@@ -31,9 +31,11 @@ dependencies {
     annotationProcessor "android.arch.persistence.room:compiler:$roomVersion"
 
     //Dagger
+    implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
     implementation "com.google.dagger:dagger-android:$daggerVersion"
     implementation "com.google.dagger:dagger-android-support:$daggerVersion"
     annotationProcessor "com.google.dagger:dagger-android-processor:$daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
 
 
 }
