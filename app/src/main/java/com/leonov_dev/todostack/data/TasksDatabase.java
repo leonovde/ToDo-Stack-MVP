@@ -8,9 +8,11 @@ import android.content.Context;
 @Database(entities = {Task.class}, version = 1, exportSchema = false)
 public abstract class TasksDatabase extends RoomDatabase{
 
-    private static final String DB_NAME = "Tasks.db";
-
     public abstract TaskDao getTaskDao();
+
+    /*  --------------Deprecated due to use of DI----------------
+
+    private static final String DB_NAME = "Tasks.db";
 
     private static TasksDatabase instance;
 
@@ -28,4 +30,6 @@ public abstract class TasksDatabase extends RoomDatabase{
             return instance;
         }
     }
+
+    */
 }
