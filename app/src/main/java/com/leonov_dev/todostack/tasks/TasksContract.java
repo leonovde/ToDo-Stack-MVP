@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.leonov_dev.todostack.BasePresenter;
 import com.leonov_dev.todostack.BaseView;
+import com.leonov_dev.todostack.data.Task;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ public interface TasksContract {
 
     interface View extends BaseView<Presenter> {
 
-        void showTasks(List tasks);
+        void showTasks(List<Task> tasks);
 
         void showNoTasks();
 
@@ -28,13 +29,14 @@ public interface TasksContract {
 
     interface Presenter extends BasePresenter<View> {
 
-        void loadTasks(boolean forceUpdate);
+        void loadTasks();
 
         void addNewTask();
 
         void takeView(TasksContract.View view);
 
         void dropView();
+
 
     }
 }

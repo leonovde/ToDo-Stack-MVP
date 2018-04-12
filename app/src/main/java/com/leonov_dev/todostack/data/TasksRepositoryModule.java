@@ -3,6 +3,11 @@ package com.leonov_dev.todostack.data;
 import android.app.Application;
 import android.arch.persistence.room.Room;
 
+import com.leonov_dev.todostack.util.AppExecutors;
+import com.leonov_dev.todostack.util.DiskIOThreadExecutor;
+
+import java.util.concurrent.Executor;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -12,19 +17,25 @@ import dagger.Provides;
 public abstract class TasksRepositoryModule {
 
 
-
-    @Provides
+    //TODO why singleton provides, not provides singletone
     @Singleton
+    @Provides
     static TaskDao provideTaskDao(TasksDatabase db){
         return db.getTaskDao();
     }
 
-    @Provides
     @Singleton
+    @Provides
     static TasksDatabase provideDb(Application context) {
         return Room.databaseBuilder(context.getApplicationContext(), TasksDatabase.class, "Tasks.db")
                 .build();
     }
 
+    @Singleton
+    @Provides
+    static AppExecutors provideAppExecutors(){
+        return new AppExecutors(new DiskIOThreadExecutor(),
+                new AppExecutors.MainThreadExecutor());
+    }
 
 }

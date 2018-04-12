@@ -11,7 +11,7 @@ import dagger.android.DaggerApplication;
 public class ToDoApplication extends DaggerApplication {
 
     @Inject
-    public TasksRepository mTasksRepository;
+    TasksRepository mTasksRepository;
 
     @Override
     protected AndroidInjector<? extends DaggerApplication> applicationInjector() {

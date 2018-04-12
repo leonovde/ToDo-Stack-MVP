@@ -1,11 +1,14 @@
 package com.leonov_dev.todostack.data;
 
 import android.arch.persistence.room.Database;
-import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
+import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 
+import com.leonov_dev.todostack.util.DateConverter;
+
 @Database(entities = {Task.class}, version = 1, exportSchema = false)
+@TypeConverters({DateConverter.class})
 public abstract class TasksDatabase extends RoomDatabase{
 
     public abstract TaskDao getTaskDao();

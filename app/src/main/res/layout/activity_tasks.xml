@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:openDrawer="start">
+    tools:openDrawer="end">
 
 
     <LinearLayout
@@ -45,7 +45,7 @@
             tools:context=".tasks.TasksActivity">
 
             <ListView
-                android:id="@+id/list_of_items"
+                android:id="@+id/list_of_tasks"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 

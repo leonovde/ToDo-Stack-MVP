@@ -4,6 +4,8 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import java.sql.Date;
+
 @Entity(tableName = "tasks")
 public final class Task {
 
@@ -22,6 +24,10 @@ public final class Task {
 
     @ColumnInfo(name = "assigned_date")
     public long mAssignedDate;
+
+//    //Used to get task of a particular date
+//    @ColumnInfo(name = "modify_date_converted")
+//    public Date mModifyDateConverted;
 
     public Task (String title, String description, long modifyDate, long assignedDate){
         this.mTitle = title;

@@ -10,4 +10,5 @@ public abstract class TasksModule {
 
     @ActivityScoped
     @Binds abstract TasksContract.Presenter providesTaskPresenter(TasksPresenter presenter);
+
 }
