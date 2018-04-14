@@ -11,4 +11,8 @@
     <string name="new_task_activity_title">New ToDo</string>
     <string name="id_of_task_key">id_of_task</string>
     <string name="error_message_description_needed">write a description</string>
+    <string name="no_available_todos">No ToDos</string>
+    <string name="todo_succesfully_created">ToDo created</string>
+    <string name="action_delete_task">Delete ToDo</string>
+    <string name="action_edit_task">Edit ToDo</string>
 </resources>

@@ -1,11 +1,13 @@
 package com.leonov_dev.todostack.tasks;
 
+import android.app.Activity;
 import android.util.Log;
 
 import com.leonov_dev.todostack.data.Task;
 import com.leonov_dev.todostack.data.TaskDataSoruce;
 import com.leonov_dev.todostack.data.TasksRepository;
 import com.leonov_dev.todostack.di.ActivityScoped;
+import com.leonov_dev.todostack.taskseditor.TasksEditorActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,6 +68,7 @@ public final class TasksPresenter implements TasksContract.Presenter {
     @Override
     public void takeView(TasksContract.View view) {
         this.mTasksView = view;
+        //TODO double task load :( ya debil delete from on resume or here
         loadTasks();
     }
 
@@ -73,4 +76,14 @@ public final class TasksPresenter implements TasksContract.Presenter {
     public void dropView() {
         mTasksView = null;
     }
+
+    @Override
+    public void checkResult(int requestCode, int resultCode) {
+        if (requestCode == TasksEditorActivity.ADD_TASK_KEY && resultCode == Activity.RESULT_OK){
+            if (mTasksView != null){
+                mTasksView.showSuccessfullySavedMessage();
+            }
+        }
+    }
+
 }

@@ -22,8 +22,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -31,6 +34,7 @@ import com.leonov_dev.todostack.R;
 import com.leonov_dev.todostack.data.Task;
 import com.leonov_dev.todostack.di.ActivityScoped;
 import com.leonov_dev.todostack.taskseditor.TasksEditorActivity;
+import com.leonov_dev.todostack.tasksinfo.TasksInfoActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +54,9 @@ public class TasksActivity extends DaggerAppCompatActivity
     private ListView mListView;
     private TasksAdapter mListAdapter;
 
-    //private TextView mNotTasksTextView;
+    private List<Task> mTasks = new ArrayList<>();
+
+    private LinearLayout mNoTasksLayoutWrapper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +67,9 @@ public class TasksActivity extends DaggerAppCompatActivity
         setSupportActionBar(toolbar);
 
         mListView = findViewById(R.id.list_of_tasks);
+
+        mNoTasksLayoutWrapper = findViewById(R.id.no_todos_layout_wrapper);
+        mNoTasksLayoutWrapper.setVisibility(View.GONE);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -74,6 +83,14 @@ public class TasksActivity extends DaggerAppCompatActivity
         mListAdapter = new TasksAdapter(this, 0, new ArrayList<Task>());
         mListView.setAdapter(mListAdapter);
 
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                showTaskInfo(mTasks.get(position).mId);
+            }
+        });
+
     }
 
     @Override
@@ -81,7 +98,6 @@ public class TasksActivity extends DaggerAppCompatActivity
         super.onResume();
         mPresenter.takeView(this);
         mPresenter.loadTasks();
-        mListAdapter.clear();
         Log.e(LOG_TAG, "0000 Resumed");
     }
 
@@ -89,6 +105,11 @@ public class TasksActivity extends DaggerAppCompatActivity
     protected void onDestroy() {
         super.onDestroy();
         mPresenter.dropView();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        mPresenter.checkResult(requestCode, resultCode);
     }
 
     @Override
@@ -129,19 +150,6 @@ public class TasksActivity extends DaggerAppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -153,11 +161,17 @@ public class TasksActivity extends DaggerAppCompatActivity
      */
     @Override
     public void showTasks(List<Task> tasks) {
+        mListAdapter.clear();
+        mTasks = tasks;
         mListAdapter.addAll(tasks);
+        mListView.setVisibility(View.VISIBLE);
+        mNoTasksLayoutWrapper.setVisibility(View.GONE);
     }
 
     @Override
     public void showNoTasks() {
+        mListView.setVisibility(View.GONE);
+        mNoTasksLayoutWrapper.setVisibility(View.VISIBLE);
         //TODO hide the list view and show message in the center "No TODOs are made"
     }
 
@@ -165,18 +179,24 @@ public class TasksActivity extends DaggerAppCompatActivity
     public void showAddTask() {
         Log.e(LOG_TAG, "Triggered start of an TasksEditorActivity");
         Intent intent = new Intent(this, TasksEditorActivity.class);
-        //TODO startActivityForResult(intent, TasksEditorActivity.SOME_CONSTANT);
+        startActivityForResult(intent, TasksEditorActivity.ADD_TASK_KEY);
+    }
+
+    @Override
+    public void showTaskInfo(long taskId) {
+        Intent intent = new Intent(this, TasksInfoActivity.class);
+        intent.putExtra(TasksInfoActivity.TASK_ID_KEY, taskId);
         startActivity(intent);
     }
 
     @Override
-    public void showTaskDetailsUi(String taskId) {
-
+    public void showSuccessfullySavedMessage() {
+        //TODO provide callback form AddTask Presenter
+        showMessage(getString(R.string.todo_succesfully_created));
     }
 
-    @Override
-    public void showSuccessfullySavedMessage() {
-
+    public void showMessage(String message){
+        Snackbar.make(mListView, message, Snackbar.LENGTH_LONG).show();
     }
 
     @Override

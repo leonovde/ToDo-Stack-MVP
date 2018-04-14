@@ -5,7 +5,7 @@
 
     <group>
         <item android:id="@+id/action_save_new_task_menu_item"
-            android:icon="@drawable/ic_action_save_new_task_menu_item"
+            android:icon="@drawable/ic_done_circle_light"
             app:showAsAction="always"
             android:title="Save new task"
             android:orderInCategory="1" />

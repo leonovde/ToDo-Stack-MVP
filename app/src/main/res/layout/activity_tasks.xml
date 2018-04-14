@@ -38,16 +38,41 @@
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/tasks_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             tools:context=".tasks.TasksActivity">
 
+
             <ListView
                 android:id="@+id/list_of_tasks"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:id="@+id/no_todos_layout_wrapper">
+
+                <ImageView
+                    android:id="@+id/no_todos_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_done_circle_dark"/>
+
+                <TextView
+                    android:id="@+id/no_todos_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/no_available_todos"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 

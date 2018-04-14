@@ -1,5 +1,6 @@
 package com.leonov_dev.todostack.taskseditor;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.leonov_dev.todostack.R;
 import com.leonov_dev.todostack.di.ActivityScoped;
+import com.leonov_dev.todostack.tasks.TasksActivity;
 
 import javax.inject.Inject;
 
@@ -23,6 +25,9 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
 
     @Inject
     TasksEditorContract.Presenter mPresenter;
+
+    public static final int ADD_TASK_KEY = 1;
+    public static final int EDIT_TASK_KEY = 2;
 
     private EditText mTitleEditText;
     private EditText mDescriptionText;
@@ -99,7 +104,10 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
 
     @Override
     public void showTasksList() {
-        onBackPressed();
+        //Deprecated, feedback added onBackPressed();
+        //TODO question is this ok to use static vars of another fragment ? :?
+        setResult(Activity.RESULT_OK);
+        finish();
     }
 
     @Override
@@ -115,5 +123,11 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
     @Override
     public boolean isActive() {
         return false;
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

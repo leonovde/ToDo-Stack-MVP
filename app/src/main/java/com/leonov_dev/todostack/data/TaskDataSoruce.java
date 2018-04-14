@@ -22,7 +22,7 @@ public interface TaskDataSoruce {
 
     void getTasks(@NonNull LoadTasksCallback callback);
 
-    void getTask(@NonNull String taskId, @NonNull GetTaskCallback callback);
+    void getTask(@NonNull long taskId, @NonNull GetTaskCallback callback);
 
     void saveTask(@NonNull Task task);
 
@@ -30,5 +30,5 @@ public interface TaskDataSoruce {
 
     void deleteAllTasks();
 
-    void deleteTask(@NonNull String taskId);
+    void deleteTask(@NonNull long taskId);
 }

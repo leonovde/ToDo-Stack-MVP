@@ -18,7 +18,7 @@ public interface TasksContract {
 
         void showAddTask();
 
-        void showTaskDetailsUi(String taskId);
+        void showTaskInfo(long taskId);
 
         void showSuccessfullySavedMessage();
 
@@ -37,6 +37,7 @@ public interface TasksContract {
 
         void dropView();
 
+        void checkResult(int requestCode, int resultCode);
 
     }
 }

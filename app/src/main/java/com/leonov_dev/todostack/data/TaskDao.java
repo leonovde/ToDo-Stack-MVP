@@ -16,6 +16,9 @@ public interface TaskDao {
     @Query("SELECT * FROM tasks")
     List<Task> getTasks();
 
+    @Query("SELECT * FROM tasks WHERE task_id = :taskId")
+    Task getTaskById(long taskId);
+
     @Query("SELECT * FROM tasks WHERE assigned_date = :assignedDate")
     List<Task> getTodaysTasks(long assignedDate);
 
