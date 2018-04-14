@@ -15,4 +15,5 @@
     <string name="todo_succesfully_created">ToDo created</string>
     <string name="action_delete_task">Delete ToDo</string>
     <string name="action_edit_task">Edit ToDo</string>
+    <string name="todo_successfully_deleted">ToDo Deleted</string>
 </resources>

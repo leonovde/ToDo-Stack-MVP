@@ -1,5 +1,6 @@
 package com.leonov_dev.todostack.tasksinfo;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +22,9 @@ public class TasksInfoActivity extends DaggerAppCompatActivity implements TasksI
     private TextView mDescriptionTextView;
 
     public static final String TASK_ID_KEY = "taks_id";
+
+    public static final int SHOW_TASK_INFO = 10;
+    public static final int SHOW_TASK_INFO_DELETED = 20;
 
     private final String LOG_TAG = TasksInfoActivity.class.getSimpleName();
 
@@ -51,6 +55,11 @@ public class TasksInfoActivity extends DaggerAppCompatActivity implements TasksI
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.info_task_menu, menu);
         return true;
@@ -60,8 +69,11 @@ public class TasksInfoActivity extends DaggerAppCompatActivity implements TasksI
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_edit_task){
+            mPresenter.editTask();
             return true;
         } else if (id == R.id.action_delete_task){
+            Log.e(LOG_TAG, "Delete Button Triggered");
+            mPresenter.deleteTask();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -75,6 +87,12 @@ public class TasksInfoActivity extends DaggerAppCompatActivity implements TasksI
     @Override
     public void showTasksEditor() {
 
+    }
+
+    @Override
+    public void showTaskDeleted() {
+        setResult(SHOW_TASK_INFO_DELETED);
+        finish();
     }
 
     @Override

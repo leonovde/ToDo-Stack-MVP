@@ -11,6 +11,8 @@ public interface TasksInfoContract {
 
         void showTasksEditor();
 
+        void showTaskDeleted();
+
         void showTasks();
 
         void showTitle(String title);

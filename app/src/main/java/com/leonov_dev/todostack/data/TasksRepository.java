@@ -63,9 +63,7 @@ public class TasksRepository implements TaskDataSoruce {
         Runnable getTaskRunnable = new Runnable() {
             @Override
             public void run() {
-
                 final Task task = mTaskDao.getTaskById(taskId);
-
                 mAppExecutors.getMainThread().execute(new Runnable() {
                     @Override
                     public void run() {
@@ -75,7 +73,6 @@ public class TasksRepository implements TaskDataSoruce {
                     }
                 });
             }
-
         };
         mAppExecutors.getDiskIO().execute(getTaskRunnable);
     }
@@ -104,7 +101,13 @@ public class TasksRepository implements TaskDataSoruce {
     }
 
     @Override
-    public void deleteTask(@NonNull long taskId) {
-
+    public void deleteTaskById(@NonNull final long taskId) {
+        Runnable deleteTaskRunnable = new Runnable() {
+            @Override
+            public void run() {
+                mTaskDao.deleteTaskById(taskId);
+            }
+        };
+        mAppExecutors.getDiskIO().execute(deleteTaskRunnable);
     }
 }

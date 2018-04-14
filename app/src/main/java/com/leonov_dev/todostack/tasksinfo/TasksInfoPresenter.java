@@ -38,7 +38,12 @@ public class TasksInfoPresenter implements TasksInfoContract.Presenter {
 
     @Override
     public void deleteTask() {
-
+        Log.e(LOG_TAG, "Task is deleted 1 id: " + mTaskId);
+        mTasksRepository.deleteTaskById(mTaskId);
+        if (mView != null){
+            Log.e(LOG_TAG, "Task is deleted 2");
+            mView.showTaskDeleted();
+        }
     }
 
     @Override

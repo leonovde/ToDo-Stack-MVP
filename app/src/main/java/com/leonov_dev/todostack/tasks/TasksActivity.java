@@ -186,13 +186,19 @@ public class TasksActivity extends DaggerAppCompatActivity
     public void showTaskInfo(long taskId) {
         Intent intent = new Intent(this, TasksInfoActivity.class);
         intent.putExtra(TasksInfoActivity.TASK_ID_KEY, taskId);
-        startActivity(intent);
+        startActivityForResult(intent, TasksInfoActivity.SHOW_TASK_INFO);
     }
 
     @Override
     public void showSuccessfullySavedMessage() {
         //TODO provide callback form AddTask Presenter
         showMessage(getString(R.string.todo_succesfully_created));
+    }
+
+    @Override
+    public void showSuccessfullyDeletedMessage() {
+        //TODO provide undo button
+        showMessage(getString(R.string.todo_successfully_deleted));
     }
 
     public void showMessage(String message){

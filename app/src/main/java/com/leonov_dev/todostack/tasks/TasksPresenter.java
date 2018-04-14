@@ -8,6 +8,7 @@ import com.leonov_dev.todostack.data.TaskDataSoruce;
 import com.leonov_dev.todostack.data.TasksRepository;
 import com.leonov_dev.todostack.di.ActivityScoped;
 import com.leonov_dev.todostack.taskseditor.TasksEditorActivity;
+import com.leonov_dev.todostack.tasksinfo.TasksInfoActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,9 +80,13 @@ public final class TasksPresenter implements TasksContract.Presenter {
 
     @Override
     public void checkResult(int requestCode, int resultCode) {
-        if (requestCode == TasksEditorActivity.ADD_TASK_KEY && resultCode == Activity.RESULT_OK){
-            if (mTasksView != null){
+        if (mTasksView != null){
+            if (requestCode == TasksEditorActivity.ADD_TASK_KEY && resultCode == Activity.RESULT_OK){
                 mTasksView.showSuccessfullySavedMessage();
+            }
+            if (requestCode == TasksInfoActivity.SHOW_TASK_INFO &&
+                    resultCode == TasksInfoActivity.SHOW_TASK_INFO_DELETED){
+                mTasksView.showSuccessfullyDeletedMessage();
             }
         }
     }

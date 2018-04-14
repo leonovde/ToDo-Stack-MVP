@@ -30,5 +30,5 @@ public interface TaskDataSoruce {
 
     void deleteAllTasks();
 
-    void deleteTask(@NonNull long taskId);
+    void deleteTaskById(@NonNull long taskId);
 }

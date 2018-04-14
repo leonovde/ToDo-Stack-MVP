@@ -22,6 +22,8 @@ public interface TasksContract {
 
         void showSuccessfullySavedMessage();
 
+        void showSuccessfullyDeletedMessage();
+
         boolean isActive();
 
         void showFilteringPopUpMenu();
