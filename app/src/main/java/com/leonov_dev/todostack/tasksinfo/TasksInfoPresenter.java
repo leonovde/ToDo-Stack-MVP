@@ -33,7 +33,9 @@ public class TasksInfoPresenter implements TasksInfoContract.Presenter {
 
     @Override
     public void editTask() {
-
+        if (mView != null) {
+            mView.showTasksEditor(mTaskId);
+        }
     }
 
     @Override

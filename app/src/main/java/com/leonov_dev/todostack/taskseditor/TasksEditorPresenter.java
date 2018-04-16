@@ -27,8 +27,8 @@ public class TasksEditorPresenter implements TasksEditorContract.Presenter {
     private long mTaskId;
 
     @Inject
-    public TasksEditorPresenter(/*@Nullable long taskId,*/ TasksRepository tasksRepository){
-//        mTaskId = taskId;
+    public TasksEditorPresenter(@Nullable long taskId, TasksRepository tasksRepository){
+        mTaskId = taskId;
         mTasksRepository = tasksRepository;
     }
 
@@ -63,19 +63,14 @@ public class TasksEditorPresenter implements TasksEditorContract.Presenter {
 
     @Override
     public void populateTask() {
-
+//        mTasksEditorView.setTitle();
+//        mTasksEditorView.setDescription();
     }
 
     @Override
     public boolean isDataMissing() {
         return false;
     }
-
-    @Override
-    public void takeTaskId(long id) {
-        mTaskId = id;
-    }
-
 
     @Override
     public void takeView(TasksEditorContract.View view) {

@@ -27,8 +27,6 @@ public interface TasksEditorContract {
 
         boolean isDataMissing();
 
-        void takeTaskId(long id);
-
     }
 
 

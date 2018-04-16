@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.leonov_dev.todostack.R;
 import com.leonov_dev.todostack.di.ActivityScoped;
+import com.leonov_dev.todostack.taskseditor.TasksEditorActivity;
 
 import javax.inject.Inject;
 
@@ -85,8 +86,10 @@ public class TasksInfoActivity extends DaggerAppCompatActivity implements TasksI
     }
 
     @Override
-    public void showTasksEditor() {
-
+    public void showTasksEditor(long taskId) {
+        Intent intent = new Intent(this, TasksEditorActivity.class);
+        intent.putExtra(TasksEditorActivity.TASK_EDIT_KEY, taskId);
+        startActivity(intent);
     }
 
     @Override

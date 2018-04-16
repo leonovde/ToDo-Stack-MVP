@@ -29,11 +29,11 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
     public static final int ADD_TASK_KEY = 1;
     public static final int EDIT_TASK_KEY = 2;
 
+    public static final String TASK_EDIT_KEY = "edit_task";
+
     private EditText mTitleEditText;
     private EditText mDescriptionText;
     private ActionBar mActionBar;
-
-    private long idOfTask = -1;
 
     private String LOG_TAG = TasksEditorActivity.class.getSimpleName();
 
@@ -51,23 +51,13 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
         mTitleEditText = findViewById(R.id.add_task_title);
         mDescriptionText = findViewById(R.id.add_task_description);
 
-        Intent intentWithExtras = getIntent();
-        if (intentWithExtras != null) {
-            Bundle extras = intentWithExtras.getExtras();
-            if (extras != null && extras.containsKey(getString(R.string.id_of_task_key))) {
-                idOfTask = extras.getLong(getString(R.string.id_of_task_key));
-            }
-        }
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         mPresenter.takeView(this);
-        if (idOfTask != -1) {
-            mPresenter.takeTaskId(idOfTask);
-        }
+
     }
 
     @Override

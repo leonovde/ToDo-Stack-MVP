@@ -9,7 +9,7 @@ public interface TasksInfoContract {
 
         void loadTask();
 
-        void showTasksEditor();
+        void showTasksEditor(long taskId);
 
         void showTaskDeleted();
 
