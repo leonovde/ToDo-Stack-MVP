@@ -1,8 +1,10 @@
 package com.leonov_dev.todostack.taskseditor;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.leonov_dev.todostack.data.Task;
+import com.leonov_dev.todostack.data.TaskDataSoruce;
 import com.leonov_dev.todostack.data.TasksRepository;
 import com.leonov_dev.todostack.di.ActivityScoped;
 import com.leonov_dev.todostack.utils.DateConverter;
@@ -25,6 +27,8 @@ public class TasksEditorPresenter implements TasksEditorContract.Presenter {
 
     @Nullable
     private long mTaskId;
+
+    private final String LOG_TAG = TasksEditorPresenter.class.getSimpleName();
 
     @Inject
     public TasksEditorPresenter(@Nullable long taskId, TasksRepository tasksRepository){
@@ -63,8 +67,25 @@ public class TasksEditorPresenter implements TasksEditorContract.Presenter {
 
     @Override
     public void populateTask() {
-//        mTasksEditorView.setTitle();
-//        mTasksEditorView.setDescription();
+        mTasksRepository.getTask(mTaskId, new TaskDataSoruce.GetTaskCallback() {
+            @Override
+            public void onTaskLoaded(Task task) {
+                if (mTasksEditorView != null){
+                    fillToDo(task);
+                }
+            }
+
+            @Override
+            public void onDataNotAvailable() {
+
+            }
+        });
+
+    }
+
+    public void fillToDo(Task task){
+        mTasksEditorView.setTitle(task.getTitle());
+        mTasksEditorView.setDescription(task.getDescription());
     }
 
     @Override
@@ -75,6 +96,9 @@ public class TasksEditorPresenter implements TasksEditorContract.Presenter {
     @Override
     public void takeView(TasksEditorContract.View view) {
         mTasksEditorView = view;
+        if (mTaskId != -1){
+            populateTask();
+        }
     }
 
     @Override

@@ -102,12 +102,12 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
 
     @Override
     public void setTitle(String title) {
-
+        mTitleEditText.setText(title);
     }
 
     @Override
     public void setDescription(String description) {
-
+        mDescriptionText.setText(description);
     }
 
     @Override
