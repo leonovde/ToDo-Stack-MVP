@@ -3,9 +3,8 @@ package com.leonov_dev.todostack.data;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
-import android.content.Context;
 
-import com.leonov_dev.todostack.util.DateConverter;
+import com.leonov_dev.todostack.utils.DateConverter;
 
 @Database(entities = {Task.class}, version = 1, exportSchema = false)
 @TypeConverters({DateConverter.class})

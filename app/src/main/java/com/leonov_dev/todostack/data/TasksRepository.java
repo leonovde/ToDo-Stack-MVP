@@ -3,9 +3,8 @@ package com.leonov_dev.todostack.data;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.leonov_dev.todostack.util.AppExecutors;
+import com.leonov_dev.todostack.utils.AppExecutors;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;

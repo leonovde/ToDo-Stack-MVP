@@ -3,10 +3,8 @@ package com.leonov_dev.todostack.data;
 import android.app.Application;
 import android.arch.persistence.room.Room;
 
-import com.leonov_dev.todostack.util.AppExecutors;
-import com.leonov_dev.todostack.util.DiskIOThreadExecutor;
-
-import java.util.concurrent.Executor;
+import com.leonov_dev.todostack.utils.AppExecutors;
+import com.leonov_dev.todostack.utils.DiskIOThreadExecutor;
 
 import javax.inject.Singleton;
 

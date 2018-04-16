@@ -3,10 +3,12 @@ package com.leonov_dev.todostack.data;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverters;
 
-import java.sql.Date;
+import com.leonov_dev.todostack.utils.DateConverter;
 
 @Entity(tableName = "tasks")
+
 public final class Task {
 
     @PrimaryKey(autoGenerate = true)

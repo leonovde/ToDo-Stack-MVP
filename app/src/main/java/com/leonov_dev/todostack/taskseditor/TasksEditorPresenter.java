@@ -5,7 +5,9 @@ import android.support.annotation.NonNull;
 import com.leonov_dev.todostack.data.Task;
 import com.leonov_dev.todostack.data.TasksRepository;
 import com.leonov_dev.todostack.di.ActivityScoped;
+import com.leonov_dev.todostack.utils.DateConverter;
 
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -32,7 +34,6 @@ public class TasksEditorPresenter implements TasksEditorContract.Presenter {
 
     @Override
     public void saveTask(String title, String description) {
-        long dateTime = getDateTime();
         if (!description.isEmpty()){
             if (title.isEmpty()){
                 //Title is empty so lets fill it with first 20 chars of description or its length
@@ -42,6 +43,8 @@ public class TasksEditorPresenter implements TasksEditorContract.Presenter {
                 }
                 title = description.substring(0, lastIndexOfDescriptionForTitle);
             }
+            long dateTime = getDateTime();
+            Date readableDate = DateConverter.fromTimestamp(dateTime);
             Task task = new Task(title, description, dateTime, dateTime);
             mTasksRepository.saveTask(task);
             mTasksEditorView.showTasksList();

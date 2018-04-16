@@ -1,4 +1,4 @@
-package com.leonov_dev.todostack.util;
+package com.leonov_dev.todostack.utils;
 
 import android.os.Handler;
 import android.os.Looper;

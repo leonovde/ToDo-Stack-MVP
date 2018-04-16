@@ -1,4 +1,4 @@
-package com.leonov_dev.todostack.util;
+package com.leonov_dev.todostack.utils;
 
 import android.arch.persistence.room.TypeConverter;
 
@@ -12,7 +12,11 @@ public class DateConverter {
     }
 
     @TypeConverter
-    public static long toTimeStamp(Date date){
-        return date == null ? null : date.getTime();
+    public static Long toTimeStamp(Date date){
+        if (date == null) {
+            return null;
+        } else {
+            return date.getTime();
+        }
     }
 }
