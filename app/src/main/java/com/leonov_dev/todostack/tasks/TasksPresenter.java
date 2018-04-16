@@ -61,7 +61,6 @@ public final class TasksPresenter implements TasksContract.Presenter {
     @Override
     public void addNewTask() {
         if (mTasksView != null){
-            Log.e(LOG_TAG, "Providing new Task Activity");
             mTasksView.showAddTask();
         }
     }

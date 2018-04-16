@@ -27,6 +27,8 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/task_title_hint"
                 android:maxLines="1"
+                android:inputType="text"
+                android:maxLength="35"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
             <EditText
