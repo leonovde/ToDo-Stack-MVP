@@ -1,6 +1,7 @@
 package com.leonov_dev.todostack.tasksinfo;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +30,8 @@ public class TasksInfoActivity extends DaggerAppCompatActivity implements TasksI
 
     private final String LOG_TAG = TasksInfoActivity.class.getSimpleName();
 
+    private ActionBar mActionBar;
+
     @Inject
     TasksInfoContract.Presenter mPresenter;
 
@@ -40,6 +43,10 @@ public class TasksInfoActivity extends DaggerAppCompatActivity implements TasksI
         mTitleTextView = findViewById(R.id.task_title_text_view);
         mDescriptionTextView = findViewById(R.id.task_description_text_view);
 
+        // Set up the toolbar.
+        mActionBar = getSupportActionBar();
+        mActionBar.setDisplayHomeAsUpEnabled(true);
+        mActionBar.setTitle(R.string.new_task_activity_title);
     }
 
     @Override
@@ -89,6 +96,7 @@ public class TasksInfoActivity extends DaggerAppCompatActivity implements TasksI
     public void showTasksEditor(long taskId) {
         Intent intent = new Intent(this, TasksEditorActivity.class);
         intent.putExtra(TasksEditorActivity.TASK_EDIT_KEY, taskId);
+        Log.e(LOG_TAG, "We put id of task = " + taskId);
         startActivity(intent);
     }
 
@@ -112,5 +120,11 @@ public class TasksInfoActivity extends DaggerAppCompatActivity implements TasksI
     @Override
     public void showDescription(String desc) {
         mDescriptionTextView.setText(desc);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

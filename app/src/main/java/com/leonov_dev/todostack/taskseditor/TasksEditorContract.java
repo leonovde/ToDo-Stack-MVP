@@ -2,6 +2,7 @@ package com.leonov_dev.todostack.taskseditor;
 
 import com.leonov_dev.todostack.BasePresenter;
 import com.leonov_dev.todostack.BaseView;
+import com.leonov_dev.todostack.data.Task;
 
 public interface TasksEditorContract {
 
@@ -10,6 +11,8 @@ public interface TasksEditorContract {
         void showEmptyTaskError();
 
         void showTasksList();
+
+        void showTaskInfo();
 
         void setTitle(String title);
 
@@ -21,7 +24,7 @@ public interface TasksEditorContract {
 
     interface Presenter extends BasePresenter<View>{
 
-        void saveTask(String title, String description);
+        void insertTask(String title, String description);
 
         void populateTask();
 

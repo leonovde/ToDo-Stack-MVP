@@ -45,7 +45,6 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
         // Set up the toolbar.
         mActionBar = getSupportActionBar();
         mActionBar.setDisplayHomeAsUpEnabled(true);
-        mActionBar.setDisplayHomeAsUpEnabled(true);
         mActionBar.setTitle(R.string.new_task_activity_title);
 
         mTitleEditText = findViewById(R.id.add_task_title);
@@ -76,11 +75,9 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_save_new_task_menu_item){
-            mPresenter.saveTask(
+            mPresenter.insertTask(
                     mTitleEditText.getText().toString(),
                     mDescriptionText.getText().toString());
-            Log.e(LOG_TAG, "Save triggered");
-            //TODO save and press back
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -97,6 +94,11 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
         //Deprecated, feedback added onBackPressed();
         //TODO question is this ok to use static vars of another fragment ? :?
         setResult(Activity.RESULT_OK);
+        finish();
+    }
+
+    @Override
+    public void showTaskInfo() {
         finish();
     }
 

@@ -20,7 +20,6 @@ public class TasksInfoPresenter implements TasksInfoContract.Presenter {
     @NonNull
     private final TasksRepository mTasksRepository;
 
-    @NonNull
     private long mTaskId;
 
     private final String LOG_TAG = TasksInfoPresenter.class.getSimpleName();

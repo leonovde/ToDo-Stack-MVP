@@ -27,7 +27,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".tasks.TasksActivity" />
         </activity>
-        <activity android:name=".tasksinfo.TasksInfoActivity"></activity>
+        <activity android:name=".tasksinfo.TasksInfoActivity" />
     </application>
 
 </manifest>

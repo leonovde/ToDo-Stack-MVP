@@ -16,4 +16,7 @@
     <string name="action_delete_task">Delete ToDo</string>
     <string name="action_edit_task">Edit ToDo</string>
     <string name="todo_successfully_deleted">ToDo Deleted</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

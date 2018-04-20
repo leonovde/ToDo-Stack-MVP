@@ -97,8 +97,6 @@ public class TasksActivity extends DaggerAppCompatActivity
     protected void onResume() {
         super.onResume();
         mPresenter.takeView(this);
-        mPresenter.loadTasks();
-        Log.e(LOG_TAG, "0000 Resumed");
     }
 
     @Override
@@ -132,9 +130,7 @@ public class TasksActivity extends DaggerAppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
         if (id == R.id.action_add_new_task_from_menu){
-            Log.e(LOG_TAG, "Triggered menu option selection");
             mPresenter.addNewTask();
             return true;
         } else if (id == R.id.action_settings) {
@@ -144,12 +140,15 @@ public class TasksActivity extends DaggerAppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        if (id == R.id.drawer_todo){
 
+        } else if (id == R.id.drawer_statistics){
+
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -177,9 +176,12 @@ public class TasksActivity extends DaggerAppCompatActivity
 
     @Override
     public void showAddTask() {
-        Log.e(LOG_TAG, "Triggered start of an TasksEditorActivity");
         Intent intent = new Intent(this, TasksEditorActivity.class);
         startActivityForResult(intent, TasksEditorActivity.ADD_TASK_KEY);
+    }
+
+    @Override
+    public void showStatistics() {
     }
 
     @Override

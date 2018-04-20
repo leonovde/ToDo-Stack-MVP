@@ -66,9 +66,15 @@ public final class TasksPresenter implements TasksContract.Presenter {
     }
 
     @Override
+    public void openStatistics() {
+        if (mTasksView != null){
+            mTasksView.showStatistics();
+        }
+    }
+
+    @Override
     public void takeView(TasksContract.View view) {
         this.mTasksView = view;
-        //TODO double task load :( ya debil delete from on resume or here
         loadTasks();
     }
 

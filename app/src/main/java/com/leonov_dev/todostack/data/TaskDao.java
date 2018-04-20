@@ -13,7 +13,7 @@ import java.util.List;
 public interface TaskDao {
 
     //-----------------Queries----------------------
-    @Query("SELECT * FROM tasks")
+    @Query("SELECT * FROM tasks ORDER BY assigned_date DESC")
     List<Task> getTasks();
 
     @Query("SELECT * FROM tasks WHERE task_id = :taskId")
@@ -28,7 +28,7 @@ public interface TaskDao {
 
     //-----------------Updates----------------------
     @Update
-    void updateTask(Task task);
+    int updateTask(Task task);
 
     //-----------------Deletes----------------------
     @Delete

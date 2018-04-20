@@ -18,7 +18,6 @@ public abstract class TasksEditorModule {
 
     @Provides
     @ActivityScoped
-    @Nullable
     static long provideTaskId(TasksEditorActivity tasksEditorActivity){
         return tasksEditorActivity.getIntent().getLongExtra(TasksEditorActivity.TASK_EDIT_KEY, -1);
     }

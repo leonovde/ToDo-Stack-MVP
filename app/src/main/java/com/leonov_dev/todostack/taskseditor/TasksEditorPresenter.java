@@ -31,13 +31,13 @@ public class TasksEditorPresenter implements TasksEditorContract.Presenter {
     private final String LOG_TAG = TasksEditorPresenter.class.getSimpleName();
 
     @Inject
-    public TasksEditorPresenter(@Nullable long taskId, TasksRepository tasksRepository){
+    public TasksEditorPresenter(long taskId, TasksRepository tasksRepository){
         mTaskId = taskId;
         mTasksRepository = tasksRepository;
     }
 
     @Override
-    public void saveTask(String title, String description) {
+    public void insertTask(String title, String description) {
         if (!description.isEmpty()){
             if (title.isEmpty()){
                 //Title is empty so lets fill it with first 20 chars of description or its length
@@ -50,12 +50,26 @@ public class TasksEditorPresenter implements TasksEditorContract.Presenter {
             long dateTime = getDateTime();
             Date readableDate = DateConverter.fromTimestamp(dateTime);
             Task task = new Task(title, description, dateTime, dateTime);
-            mTasksRepository.saveTask(task);
-            mTasksEditorView.showTasksList();
+
+            if (mTaskId == -1){
+                saveTask(task);
+            } else {
+                task.setId(mTaskId);
+                updateTask(task);
+            }
         } else {
             mTasksEditorView.showEmptyTaskError();
         }
-        //TODO show toast message to write at least description
+    }
+
+    private void saveTask(Task task){
+        mTasksRepository.saveTask(task);
+        mTasksEditorView.showTasksList();
+    }
+
+    private void updateTask(Task task){
+        mTasksRepository.updateTask(task);
+        mTasksEditorView.showTaskInfo();
     }
 
     private long getDateTime(){

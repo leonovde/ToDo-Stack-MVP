@@ -18,6 +18,8 @@ public interface TasksContract {
 
         void showAddTask();
 
+        void showStatistics();
+
         void showTaskInfo(long taskId);
 
         void showSuccessfullySavedMessage();
@@ -34,6 +36,8 @@ public interface TasksContract {
         void loadTasks();
 
         void addNewTask();
+
+        void openStatistics();
 
         void takeView(TasksContract.View view);
 

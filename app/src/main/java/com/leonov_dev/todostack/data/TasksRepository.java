@@ -86,12 +86,18 @@ public class TasksRepository implements TaskDataSoruce {
             }
         };
         mAppExecutors.getDiskIO().execute(saveRunnable);
-
     }
 
     @Override
-    public void updateTask(@NonNull Task task) {
-
+    public void updateTask(@NonNull final Task task) {
+        checkNotNull(task);
+        Runnable updateRunnable = new Runnable() {
+            @Override
+            public void run() {
+                 mTaskDao.updateTask(task);
+            }
+        };
+        mAppExecutors.getDiskIO().execute(updateRunnable);
     }
 
     @Override
