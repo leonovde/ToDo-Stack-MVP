@@ -72,52 +72,11 @@ public class TasksRepository implements TaskDataSoruce {
     }
 
     @Override
-    public void getThisMonthTasks(@NonNull final LoadTasksCallback callback) {
+    public void getTasks(@NonNull final long fromTime, @NonNull final LoadTasksCallback callback) {
         Runnable getThisWeekTasksRunnable = new Runnable() {
             @Override
             public void run() {
-                final List<Task> tasks = mTaskDao.getThisWeekTasks(
-                        CalendarUtils.getStartOfMonthInMilliseconds());
-                mAppExecutors.getMainThread().execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (!tasks.isEmpty()){
-                            callback.onTasksLoaded(tasks);
-                        }
-                    }
-                });
-            }
-        };
-        mAppExecutors.getDiskIO().execute(getThisWeekTasksRunnable);
-    }
-
-    @Override
-    public void getThisWeekTasks(@NonNull final LoadTasksCallback callback) {
-        Runnable getThisWeekTasksRunnable = new Runnable() {
-            @Override
-            public void run() {
-                final List<Task> tasks = mTaskDao.getThisWeekTasks(
-                        CalendarUtils.getStartOfWeekInMilliseconds());
-                mAppExecutors.getMainThread().execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (!tasks.isEmpty()){
-                            callback.onTasksLoaded(tasks);
-                        }
-                    }
-                });
-            }
-        };
-        mAppExecutors.getDiskIO().execute(getThisWeekTasksRunnable);
-    }
-
-    @Override
-    public void getTodaysTasks(@NonNull final LoadTasksCallback callback) {
-        Runnable getThisWeekTasksRunnable = new Runnable() {
-            @Override
-            public void run() {
-                final List<Task> tasks = mTaskDao.getThisWeekTasks(
-                        CalendarUtils.getStartOfTodayInMilliseconds());
+                final List<Task> tasks = mTaskDao.getTasksStartingFrom(fromTime);
                 mAppExecutors.getMainThread().execute(new Runnable() {
                     @Override
                     public void run() {

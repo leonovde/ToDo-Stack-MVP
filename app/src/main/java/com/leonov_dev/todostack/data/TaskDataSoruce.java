@@ -24,11 +24,7 @@ public interface TaskDataSoruce {
 
     void getTask(@NonNull long taskId, @NonNull GetTaskCallback callback);
 
-    void getThisMonthTasks(@NonNull LoadTasksCallback callback);
-
-    void getThisWeekTasks(@NonNull LoadTasksCallback callback);
-
-    void getTodaysTasks(@NonNull LoadTasksCallback callback);
+    void getTasks(@NonNull long fromTime, @NonNull LoadTasksCallback callback);
 
     void saveTask(@NonNull Task task);
 
