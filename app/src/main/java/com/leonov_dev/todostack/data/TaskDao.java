@@ -19,8 +19,11 @@ public interface TaskDao {
     @Query("SELECT * FROM tasks WHERE task_id = :taskId")
     Task getTaskById(long taskId);
 
-    @Query("SELECT * FROM tasks WHERE assigned_date = :assignedDate")
-    List<Task> getTodaysTasks(long assignedDate);
+    @Query("SELECT * FROM tasks WHERE assigned_date > :firstDayOfWeek")
+    List<Task> getThisWeekTasks(long firstDayOfWeek);
+
+    @Query("SELECT * FROM tasks WHERE assigned_date > :todaysDay")
+    List<Task> getTodaysTasks(long todaysDay);
 
     //-----------------Inserts----------------------
     @Insert(onConflict = OnConflictStrategy.REPLACE)
