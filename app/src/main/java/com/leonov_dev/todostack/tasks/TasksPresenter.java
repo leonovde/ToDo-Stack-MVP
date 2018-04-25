@@ -33,17 +33,14 @@ public final class TasksPresenter implements TasksContract.Presenter {
 
     @Override
     public void loadTasks() {
-        Log.e(LOG_TAG, "1111 LoadTasks in presenter");
         mTasksRepository.getTasks(new TaskDataSoruce.LoadTasksCallback() {
             @Override
             public void onTasksLoaded(List<Task> tasks) {
-                Log.e(LOG_TAG, "44444-1 Passing to a view Size of tasks " +  tasks.size());
                 //TODO add filters for (day && type of action)
                 if (mTasksView == null /*|| !mTasksView.isActive()*/){
                     return;
                 }
                 if (tasks != null) {
-                    Log.e(LOG_TAG, "44444-2 Passing to a view Size of tasks " +  tasks.size());
                     mTasksView.showTasks(tasks);
                 }
             }
@@ -94,6 +91,16 @@ public final class TasksPresenter implements TasksContract.Presenter {
                 mTasksView.showSuccessfullyDeletedMessage();
             }
         }
+    }
+
+    @Override
+    public void setCategoryFilter() {
+
+    }
+
+    @Override
+    public void setTimeFilter() {
+
     }
 
 }

@@ -45,5 +45,9 @@ public interface TasksContract {
 
         void checkResult(int requestCode, int resultCode);
 
+        void setCategoryFilter();
+
+        void setTimeFilter();
+
     }
 }
