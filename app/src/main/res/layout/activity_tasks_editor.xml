@@ -38,6 +38,11 @@
                 android:gravity="top"
                 android:hint="@string/task_description_hint" />
 
+            <include
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/reminder_view" />
+
         </LinearLayout>
 
     </ScrollView>
