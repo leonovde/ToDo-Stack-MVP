@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -57,6 +58,13 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
 
         mReminderLinearLayout = findViewById(R.id.reminder_linear_layout);
         mReminderTextView = findViewById(R.id.reminder_condition);
+
+        mReminderLinearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
     }
 

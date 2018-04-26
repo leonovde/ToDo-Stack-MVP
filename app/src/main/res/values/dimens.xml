@@ -7,4 +7,6 @@
     <dimen name="fab_margin">16dp</dimen>
 
     <dimen name="list_item_padding">8dp</dimen>
+
+    <dimen name="activity_inner_icon">32dp</dimen>
 </resources>

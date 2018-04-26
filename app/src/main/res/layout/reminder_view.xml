@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/reminder_image"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="@dimen/activity_inner_icon"
+        android:layout_height="@dimen/activity_inner_icon"
         android:layout_weight="0"
         android:src="@drawable/ic_reminder_24dp"/>
 
