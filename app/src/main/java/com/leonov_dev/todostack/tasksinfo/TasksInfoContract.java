@@ -18,6 +18,8 @@ public interface TasksInfoContract {
         void showTitle(String title);
 
         void showDescription(String desc);
+
+        void showReminder(String time);
     }
 
 

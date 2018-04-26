@@ -32,11 +32,18 @@
             <TextView
                 android:id="@+id/task_description_text_view"
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
+                android:layout_height="wrap_content"
                 android:gravity="top"
                 android:hint="@string/task_description_hint" />
 
+            <include
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                layout="@layout/reminder_view"/>
+
         </LinearLayout>
+
+
 
     </ScrollView>
 

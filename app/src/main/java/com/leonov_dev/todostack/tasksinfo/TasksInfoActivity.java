@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.leonov_dev.todostack.R;
@@ -22,6 +24,8 @@ public class TasksInfoActivity extends DaggerAppCompatActivity implements TasksI
 
     private TextView mTitleTextView;
     private TextView mDescriptionTextView;
+    private LinearLayout mReminderLinearLayout;
+    private TextView mReminderTextView;
 
     public static final String TASK_ID_KEY = "taks_id";
 
@@ -42,6 +46,10 @@ public class TasksInfoActivity extends DaggerAppCompatActivity implements TasksI
 
         mTitleTextView = findViewById(R.id.task_title_text_view);
         mDescriptionTextView = findViewById(R.id.task_description_text_view);
+        mReminderLinearLayout = findViewById(R.id.reminder_linear_layout);
+        mReminderTextView = findViewById(R.id.reminder_condition);
+
+        mReminderLinearLayout.setVisibility(View.GONE);
 
         // Set up the toolbar.
         mActionBar = getSupportActionBar();
@@ -120,6 +128,12 @@ public class TasksInfoActivity extends DaggerAppCompatActivity implements TasksI
     @Override
     public void showDescription(String desc) {
         mDescriptionTextView.setText(desc);
+    }
+
+    @Override
+    public void showReminder(String time) {
+        mReminderLinearLayout.setVisibility(View.VISIBLE);
+        mReminderTextView.setText(time);
     }
 
     @Override
