@@ -100,7 +100,7 @@ public class TasksEditorPresenter implements TasksEditorContract.Presenter {
     public void fillToDo(Task task){
         mTasksEditorView.setTitle(task.getTitle());
         mTasksEditorView.setDescription(task.getDescription());
-        
+
     }
 
     @Override

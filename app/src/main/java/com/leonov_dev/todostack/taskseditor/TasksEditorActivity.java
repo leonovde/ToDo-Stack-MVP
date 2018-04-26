@@ -85,7 +85,8 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
         if (id == R.id.action_save_new_task_menu_item){
             mPresenter.insertTask(
                     mTitleEditText.getText().toString(),
-                    mDescriptionText.getText().toString());
+                    mDescriptionText.getText().toString(),
+                    mReminderTextView.getText().toString());
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -118,6 +119,11 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
     @Override
     public void setDescription(String description) {
         mDescriptionText.setText(description);
+    }
+
+    @Override
+    public void setReminder(String time) {
+
     }
 
     @Override
