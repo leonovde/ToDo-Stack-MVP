@@ -4,6 +4,8 @@ import com.leonov_dev.todostack.BasePresenter;
 import com.leonov_dev.todostack.BaseView;
 import com.leonov_dev.todostack.data.Task;
 
+import javax.annotation.Nullable;
+
 public interface TasksEditorContract {
 
     interface View extends BaseView<Presenter>{
@@ -18,13 +20,15 @@ public interface TasksEditorContract {
 
         void setDescription(String description);
 
+        void setReminder(String time);
+
         boolean isActive();
 
     }
 
     interface Presenter extends BasePresenter<View>{
 
-        void insertTask(String title, String description);
+        void insertTask(String title, String description, @Nullable String Reminder);
 
         void populateTask();
 

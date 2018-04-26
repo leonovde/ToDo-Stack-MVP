@@ -37,7 +37,7 @@ public class TasksEditorPresenter implements TasksEditorContract.Presenter {
     }
 
     @Override
-    public void insertTask(String title, String description) {
+    public void insertTask(String title, String description, @Nullable String Reminder) {
         if (!description.isEmpty()){
             if (title.isEmpty()){
                 //Title is empty so lets fill it with first 20 chars of description or its length
@@ -100,6 +100,7 @@ public class TasksEditorPresenter implements TasksEditorContract.Presenter {
     public void fillToDo(Task task){
         mTasksEditorView.setTitle(task.getTitle());
         mTasksEditorView.setDescription(task.getDescription());
+        
     }
 
     @Override

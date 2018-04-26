@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.leonov_dev.todostack.R;
@@ -33,6 +35,9 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
 
     private EditText mTitleEditText;
     private EditText mDescriptionText;
+    private LinearLayout mReminderLinearLayout;
+    private TextView mReminderTextView;
+
     private ActionBar mActionBar;
 
     private String LOG_TAG = TasksEditorActivity.class.getSimpleName();
@@ -49,6 +54,9 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
 
         mTitleEditText = findViewById(R.id.add_task_title);
         mDescriptionText = findViewById(R.id.add_task_description);
+
+        mReminderLinearLayout = findViewById(R.id.reminder_linear_layout);
+        mReminderTextView = findViewById(R.id.reminder_condition);
 
     }
 
