@@ -1,6 +1,7 @@
 package com.leonov_dev.todostack.taskseditor.reminderdialog;
 
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
@@ -11,6 +12,7 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -21,6 +23,7 @@ import android.widget.TimePicker;
 import com.leonov_dev.todostack.R;
 import com.leonov_dev.todostack.di.ActivityScoped;
 import com.leonov_dev.todostack.di.FragmentScoped;
+import com.leonov_dev.todostack.utils.CalendarUtils;
 
 import java.util.Calendar;
 
@@ -93,7 +96,8 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
         mDatePickerTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                DialogFragment dateReminderFragment = new DateReminderFragment();
+                dateReminderFragment.show(getFragmentManager(), DATE_DIALOG);
             }
         });
 
@@ -103,16 +107,14 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
         mTimePickerTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment newFragment = new TimerReminderFragment();//mTimeReminderFragment.get();
-                newFragment.show(getFragmentManager(), TIME_DIALOG);
+                DialogFragment timeReminderFragment = new TimerReminderFragment();//mTimeReminderFragment.get();
+                timeReminderFragment.show(getFragmentManager(), TIME_DIALOG);
             }
         });
 
 
         return rootView;
     }
-
-
 
     @Override
     public void onResume() {
@@ -138,9 +140,15 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
         mLocationPickerSpinner.setVisibility(View.VISIBLE);
     }
 
+    @Override
+    public void adjustTime() {
+
+    }
+
     //TODO Should this be injected? Why? Where?
 //    @FragmentScoped
-    public static class TimerReminderFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener{
+    public static class TimerReminderFragment extends DialogFragment implements
+            TimePickerDialog.OnTimeSetListener{
 
 //        @Inject
         public TimerReminderFragment(){
@@ -165,5 +173,30 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
         }
     }
 
-    
+    public static class DateReminderFragment extends DialogFragment implements
+            DatePickerDialog.OnDateSetListener{
+
+        public DateReminderFragment(){
+
+        }
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+
+            DatePickerDialog datePickerDialog =
+                    new DatePickerDialog(getActivity(), this, year, month, day);
+            datePickerDialog.getDatePicker()
+                    .setMinDate(CalendarUtils.getStartOfTodayInMilliseconds());
+            return datePickerDialog;
+        }
+
+        @Override
+        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
+        }
+    }
 }

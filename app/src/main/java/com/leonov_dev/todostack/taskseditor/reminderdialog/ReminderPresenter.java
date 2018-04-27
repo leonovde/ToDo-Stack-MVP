@@ -49,4 +49,9 @@ public class ReminderPresenter implements ReminderDialogContract.Presenter {
                 mView.showDateTimePicker();
         }
     }
+
+    @Override
+    public void checkTimeValidity() {
+
+    }
 }

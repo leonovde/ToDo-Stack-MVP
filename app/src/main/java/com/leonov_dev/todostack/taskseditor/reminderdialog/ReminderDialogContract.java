@@ -11,6 +11,8 @@ public interface ReminderDialogContract {
 
         void showLocationPicker();
 
+        void adjustTime();
+
     }
 
     interface Presenter extends BasePresenter<View>{
@@ -20,6 +22,8 @@ public interface ReminderDialogContract {
         ReminderDialogUiType getReminderDialogUiType();
 
         void setUpUI();
+
+        void checkTimeValidity();
 
     }
 }
