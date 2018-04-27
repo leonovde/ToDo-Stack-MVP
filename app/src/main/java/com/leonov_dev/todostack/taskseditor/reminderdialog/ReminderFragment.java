@@ -143,9 +143,9 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
     public static class TimerReminderFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener{
 
 //        @Inject
-//        public TimerReminderFragment(){
-//
-//        }
+        public TimerReminderFragment(){
+
+        }
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -164,4 +164,6 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
 
         }
     }
+
+    
 }
