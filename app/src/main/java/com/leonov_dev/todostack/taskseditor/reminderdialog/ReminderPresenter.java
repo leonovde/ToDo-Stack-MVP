@@ -14,6 +14,8 @@ public class ReminderPresenter implements ReminderDialogContract.Presenter {
 
     }
 
+    private ReminderDialogUiType mReminderDialogUiType;
+
     @Override
     public void takeView(ReminderDialogContract.View view) {
         mView = view;
@@ -22,5 +24,29 @@ public class ReminderPresenter implements ReminderDialogContract.Presenter {
     @Override
     public void dropView() {
         mView = null;
+    }
+
+    @Override
+    public void setReminderDialogUiType(ReminderDialogUiType type) {
+        mReminderDialogUiType = type;
+    }
+
+    @Override
+    public ReminderDialogUiType getReminderDialogUiType() {
+        return mReminderDialogUiType;
+    }
+
+    @Override
+    public void setUpUI() {
+        switch (mReminderDialogUiType){
+            case DATE_TIME:
+                mView.showDateTimePicker();
+                break;
+            case LOCATION:
+                mView.showLocationPicker();
+                break;
+            default:
+                mView.showDateTimePicker();
+        }
     }
 }

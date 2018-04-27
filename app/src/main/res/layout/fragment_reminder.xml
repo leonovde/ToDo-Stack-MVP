@@ -1,14 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".taskseditor.reminderdialog.ReminderFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RadioGroup
+        android:id="@+id/reminder_radio_group"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-</FrameLayout>
+        <RadioButton
+            android:id="@+id/time_reminder_rb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="@string/time_radio_button_lable"/>
+
+        <RadioButton
+            android:id="@+id/location_reminder_rb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/location_radio_button_lable"/>
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/reminder_dialog_date_time_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/time_reminder_date_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select_date_reminder_tv"/>
+
+        <TextView
+            android:id="@+id/time_reminder_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select_time_rendinder_tv"/>
+
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/location_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </Spinner>
+
+</LinearLayout>

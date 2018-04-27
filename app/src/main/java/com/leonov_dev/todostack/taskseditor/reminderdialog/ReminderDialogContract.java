@@ -7,9 +7,19 @@ public interface ReminderDialogContract {
 
     interface View extends BaseView<Presenter> {
 
+        void showDateTimePicker();
+
+        void showLocationPicker();
+
     }
 
     interface Presenter extends BasePresenter<View>{
+
+        void setReminderDialogUiType(ReminderDialogUiType type);
+
+        ReminderDialogUiType getReminderDialogUiType();
+
+        void setUpUI();
 
     }
 }
