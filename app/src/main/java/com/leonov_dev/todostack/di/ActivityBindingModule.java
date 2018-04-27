@@ -24,4 +24,5 @@ public abstract class ActivityBindingModule {
     @ActivityScoped
     @ContributesAndroidInjector(modules = TasksInfoModule.class)
     abstract TasksInfoActivity provideTasksInfoModule();
+
 }

@@ -1,6 +1,7 @@
 package com.leonov_dev.todostack.taskseditor;
 
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -17,10 +18,11 @@ import android.widget.Toast;
 
 import com.leonov_dev.todostack.R;
 import com.leonov_dev.todostack.di.ActivityScoped;
-import com.leonov_dev.todostack.tasks.TasksActivity;
+import com.leonov_dev.todostack.taskseditor.reminderdialog.ReminderFragment;
 
 import javax.inject.Inject;
 
+import dagger.Lazy;
 import dagger.android.support.DaggerAppCompatActivity;
 
 @ActivityScoped
@@ -28,6 +30,9 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
 
     @Inject
     TasksEditorContract.Presenter mPresenter;
+
+    @Inject
+    Lazy<ReminderFragment> mReminderFragment;
 
     public static final int ADD_TASK_KEY = 1;
     public static final int EDIT_TASK_KEY = 2;
@@ -62,7 +67,8 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
         mReminderLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                DialogFragment newFragment = mReminderFragment.get();
+                newFragment.show(getFragmentManager(), "timePicker");
             }
         });
 

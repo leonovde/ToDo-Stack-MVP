@@ -61,7 +61,6 @@ public class TasksInfoActivity extends DaggerAppCompatActivity implements TasksI
     protected void onResume() {
         super.onResume();
         mPresenter.takeView(this);
-        Log.e(LOG_TAG, "Resume triggered");
     }
 
     @Override
