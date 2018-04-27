@@ -2,6 +2,7 @@ package com.leonov_dev.todostack.taskseditor.reminderdialog;
 
 
 import android.app.Dialog;
+import android.app.DialogFragment;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,11 +20,13 @@ import android.widget.TimePicker;
 
 import com.leonov_dev.todostack.R;
 import com.leonov_dev.todostack.di.ActivityScoped;
+import com.leonov_dev.todostack.di.FragmentScoped;
 
 import java.util.Calendar;
 
 import javax.inject.Inject;
 
+import dagger.Lazy;
 import dagger.android.DaggerDialogFragment;
 
 @ActivityScoped
@@ -37,6 +40,9 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
 
     }
 
+//    @Inject
+//    Lazy<TimerReminderFragment> mTimeReminderFragment;
+
     private RadioGroup mRadioGroup;
 
     private LinearLayout mDateTimeLayout;
@@ -44,6 +50,9 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
     private TextView mTimePickerTv;
 
     private Spinner mLocationPickerSpinner;
+
+    private static final String DATE_DIALOG = "DateDialog";
+    private static final String TIME_DIALOG = "TimeDialog";
 
     @Nullable
     @Override
@@ -78,7 +87,28 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
             }
         });
 
-        
+        /**
+         * Open Date Dialog On Click
+         */
+        mDatePickerTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        /**
+         * Open Time Dialog On Click
+         */
+        mTimePickerTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment newFragment = new TimerReminderFragment();//mTimeReminderFragment.get();
+                newFragment.show(getFragmentManager(), TIME_DIALOG);
+            }
+        });
+
+
         return rootView;
     }
 
@@ -108,8 +138,14 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
         mLocationPickerSpinner.setVisibility(View.VISIBLE);
     }
 
+    //TODO Should this be injected? Why? Where?
+//    @FragmentScoped
+    public static class TimerReminderFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener{
 
-    public static class TimerReminderFragment extends DaggerDialogFragment implements TimePickerDialog.OnTimeSetListener{
+//        @Inject
+//        public TimerReminderFragment(){
+//
+//        }
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {

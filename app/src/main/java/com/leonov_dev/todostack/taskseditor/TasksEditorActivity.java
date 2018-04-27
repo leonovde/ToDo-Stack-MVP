@@ -34,10 +34,13 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
     @Inject
     Lazy<ReminderFragment> mReminderFragment;
 
+
     public static final int ADD_TASK_KEY = 1;
     public static final int EDIT_TASK_KEY = 2;
 
     public static final String TASK_EDIT_KEY = "edit_task";
+
+    public static final String REMINDER_DIALOG_TAG = "ReminderDialog";
 
     private EditText mTitleEditText;
     private EditText mDescriptionText;
@@ -68,7 +71,7 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
             @Override
             public void onClick(View v) {
                 DialogFragment newFragment = mReminderFragment.get();
-                newFragment.show(getFragmentManager(), "timePicker");
+                newFragment.show(getFragmentManager(), REMINDER_DIALOG_TAG);
             }
         });
 
