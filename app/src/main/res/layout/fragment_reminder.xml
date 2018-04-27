@@ -39,12 +39,14 @@
             android:id="@+id/time_reminder_date_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corner"
             android:text="@string/select_date_reminder_tv"/>
 
         <TextView
             android:id="@+id/time_reminder_time_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corner"
             android:text="@string/select_time_rendinder_tv"/>
 
     </LinearLayout>

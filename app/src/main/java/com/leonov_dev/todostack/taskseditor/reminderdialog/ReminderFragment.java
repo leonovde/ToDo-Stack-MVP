@@ -12,6 +12,7 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -112,8 +113,12 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
             }
         });
 
-
         return rootView;
+    }
+
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        return super.onCreateDialog(savedInstanceState);
     }
 
     @Override
@@ -169,7 +174,7 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
 
         @Override
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-
+            //TODO If Date is today, and current time > picked. Show Error
         }
     }
 

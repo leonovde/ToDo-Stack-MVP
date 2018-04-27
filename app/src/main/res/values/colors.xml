@@ -4,5 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <color name="gray">#F0F0F0</color>
+
     <drawable name="touchFeedback">#CFD8DC</drawable>
 </resources>
