@@ -144,7 +144,6 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
     public void onDestroy() {
         super.onDestroy();
         mPresenter.dropView();
-        Log.e(LOG_TAG, "Reminder Destroyed");
     }
 
     @Override
@@ -238,10 +237,5 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
             mListener.onDateSet(year, month, dayOfMonth);
         }
 
-        @Override
-        public void onDestroy() {
-            super.onDestroy();
-            Log.e(LOG_TAG, "Picker Destroyed");
-        }
     }
 }
