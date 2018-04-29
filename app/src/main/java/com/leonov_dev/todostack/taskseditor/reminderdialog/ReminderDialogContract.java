@@ -15,11 +15,6 @@ public interface ReminderDialogContract {
 
         void setTime(String time);
 
-        interface dateView extends BaseView<Presenter.datePresenter>{
-
-
-        }
-
     }
 
     interface Presenter extends BasePresenter<View>{
@@ -30,15 +25,11 @@ public interface ReminderDialogContract {
 
         void setUpUI();
 
-        interface datePresenter extends BasePresenter<View.dateView>{
+        void populateDialogDate(String date);
 
-            void populateDate(String date);
+        void populateDialogTime(String time);
 
-            void populateTime(String time);
-
-            void checkTimeValidity();
-
-        }
+        void checkTimeValidity();
 
     }
 }

@@ -51,4 +51,19 @@ public class ReminderPresenter implements ReminderDialogContract.Presenter {
         }
     }
 
+    @Override
+    public void populateDialogDate(String date) {
+        mView.setDate(date);
+    }
+
+    @Override
+    public void populateDialogTime(String time) {
+
+    }
+
+    @Override
+    public void checkTimeValidity() {
+
+    }
+
 }

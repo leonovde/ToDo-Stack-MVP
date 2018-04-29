@@ -1,6 +1,7 @@
 package com.leonov_dev.todostack.taskseditor.reminderdialog;
 
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -59,6 +60,15 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
     private static final String DATE_DIALOG = "DateDialog";
     private static final String TIME_DIALOG = "TimeDialog";
 
+    DatePickerListener mDatePickerListener = new DatePickerListener() {
+
+        @Override
+        public void onDateSet(int year, int month, int date) {
+            mPresenter.populateDialogDate(year + "/" + month + "/" + date);
+        }
+
+    };
+
     private final String LOG_TAG = ReminderFragment.class.getSimpleName();
 
     @Nullable
@@ -100,7 +110,7 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
         mDatePickerTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment dateReminderFragment = new DateReminderFragment();
+                DialogFragment dateReminderFragment = new DateReminderFragment(mDatePickerListener);
                 dateReminderFragment.show(getFragmentManager(), DATE_DIALOG);
             }
         });
@@ -134,6 +144,7 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
     public void onDestroy() {
         super.onDestroy();
         mPresenter.dropView();
+        Log.e(LOG_TAG, "Reminder Destroyed");
     }
 
     @Override
@@ -150,11 +161,21 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
 
     @Override
     public void setDate(String date) {
-
+        mDatePickerTv.setText(date);
     }
 
     @Override
     public void setTime(String time) {
+
+    }
+
+    interface DatePickerListener{
+
+        void onDateSet(int year, int month, int date);
+
+    }
+
+    interface TimePickerListener{
 
     }
 
@@ -186,13 +207,16 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
         }
     }
 
+    @SuppressLint("ValidFragment")
     public static class DateReminderFragment extends DialogFragment implements
-            DatePickerDialog.OnDateSetListener, ReminderDialogContract.View.dateView{
+            DatePickerDialog.OnDateSetListener{
+
+        private DatePickerListener mListener;
 
         private final String LOG_TAG = ReminderFragment.class.getSimpleName();
 
-        public DateReminderFragment(){
-
+        public DateReminderFragment(DatePickerListener listener){
+            mListener = listener;
         }
 
         @Override
@@ -211,8 +235,13 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
 
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
+            mListener.onDateSet(year, month, dayOfMonth);
         }
 
+        @Override
+        public void onDestroy() {
+            super.onDestroy();
+            Log.e(LOG_TAG, "Picker Destroyed");
+        }
     }
 }
