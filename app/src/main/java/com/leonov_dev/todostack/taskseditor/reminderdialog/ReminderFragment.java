@@ -69,6 +69,13 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
 
     };
 
+    TimePickerListener mTimePickerListener = new TimePickerListener() {
+        @Override
+        public void onTimeSet(int hourOfDay, int minute) {
+            mPresenter.populateDialogTime(hourOfDay + ":" + minute);
+        }
+    };
+
     private final String LOG_TAG = ReminderFragment.class.getSimpleName();
 
     @Nullable
@@ -121,7 +128,7 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
         mTimePickerTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment timeReminderFragment = new TimerReminderFragment();//mTimeReminderFragment.get();
+                DialogFragment timeReminderFragment = new TimerReminderFragment(mTimePickerListener);//mTimeReminderFragment.get();
                 timeReminderFragment.show(getFragmentManager(), TIME_DIALOG);
             }
         });
@@ -165,7 +172,7 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
 
     @Override
     public void setTime(String time) {
-
+        mTimePickerTv.setText(time);
     }
 
     interface DatePickerListener{
@@ -176,16 +183,18 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
 
     interface TimePickerListener{
 
+        void onTimeSet(int hourOfDay, int minute);
+
     }
 
-    //TODO Should this be injected? Why? Where?
-//    @FragmentScoped
+    @SuppressLint("ValidFragment")
     public static class TimerReminderFragment extends DialogFragment implements
             TimePickerDialog.OnTimeSetListener{
 
-//        @Inject
-        public TimerReminderFragment(){
+        private TimePickerListener mTimePickerListener;
 
+        public TimerReminderFragment(TimePickerListener listener){
+            mTimePickerListener = listener;
         }
 
         @Override
@@ -202,6 +211,7 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
 
         @Override
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            mTimePickerListener.onTimeSet(hourOfDay, minute);
             //TODO If Date is today, and current time > picked. Show Error
         }
     }
