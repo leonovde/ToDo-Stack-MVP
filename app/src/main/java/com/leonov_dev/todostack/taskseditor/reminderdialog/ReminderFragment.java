@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +58,8 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
 
     private static final String DATE_DIALOG = "DateDialog";
     private static final String TIME_DIALOG = "TimeDialog";
+
+    private final String LOG_TAG = ReminderFragment.class.getSimpleName();
 
     @Nullable
     @Override
@@ -146,7 +149,12 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
     }
 
     @Override
-    public void adjustTime() {
+    public void setDate(String date) {
+
+    }
+
+    @Override
+    public void setTime(String time) {
 
     }
 
@@ -179,7 +187,9 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
     }
 
     public static class DateReminderFragment extends DialogFragment implements
-            DatePickerDialog.OnDateSetListener{
+            DatePickerDialog.OnDateSetListener, ReminderDialogContract.View.dateView{
+
+        private final String LOG_TAG = ReminderFragment.class.getSimpleName();
 
         public DateReminderFragment(){
 
@@ -203,5 +213,6 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
         }
+
     }
 }

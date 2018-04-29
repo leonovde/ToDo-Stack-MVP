@@ -11,7 +11,14 @@ public interface ReminderDialogContract {
 
         void showLocationPicker();
 
-        void adjustTime();
+        void setDate(String date);
+
+        void setTime(String time);
+
+        interface dateView extends BaseView<Presenter.datePresenter>{
+
+
+        }
 
     }
 
@@ -23,7 +30,15 @@ public interface ReminderDialogContract {
 
         void setUpUI();
 
-        void checkTimeValidity();
+        interface datePresenter extends BasePresenter<View.dateView>{
+
+            void populateDate(String date);
+
+            void populateTime(String time);
+
+            void checkTimeValidity();
+
+        }
 
     }
 }

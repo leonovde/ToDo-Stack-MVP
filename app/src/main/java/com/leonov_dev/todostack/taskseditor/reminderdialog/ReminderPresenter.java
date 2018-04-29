@@ -31,6 +31,7 @@ public class ReminderPresenter implements ReminderDialogContract.Presenter {
         mReminderDialogUiType = type;
     }
 
+
     @Override
     public ReminderDialogUiType getReminderDialogUiType() {
         return mReminderDialogUiType;
@@ -50,8 +51,4 @@ public class ReminderPresenter implements ReminderDialogContract.Presenter {
         }
     }
 
-    @Override
-    public void checkTimeValidity() {
-
-    }
 }
