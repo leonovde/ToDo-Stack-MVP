@@ -1,13 +1,21 @@
 package com.leonov_dev.todostack.taskseditor.reminderdialog;
 
+import android.util.Log;
+
 import com.leonov_dev.todostack.di.ActivityScoped;
 import com.leonov_dev.todostack.di.FragmentScoped;
+import com.leonov_dev.todostack.utils.CalendarUtils;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.inject.Inject;
 
 public class ReminderPresenter implements ReminderDialogContract.Presenter {
 
     ReminderDialogContract.View mView;
+
+    private final String LOG_TAG = ReminderPresenter.class.getSimpleName();
 
     @Inject
     ReminderPresenter(){
@@ -62,8 +70,29 @@ public class ReminderPresenter implements ReminderDialogContract.Presenter {
     }
 
     @Override
-    public void checkTimeValidity() {
+    public void checkTimeValidity(String date, String time, String standardDate, String standardTime) {
+        if (standardDate.equals(date)) {
+            mView.showPickedDateError();
+            if (standardTime.equals(time)) {
+                mView.showPickedTimeError();
+                return;
+            }
+            return;
+        }
 
+        String fullDateString = date + " " + time;
+        Date pickedDateTime = null;
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        try {
+            pickedDateTime = formatter.parse(fullDateString);
+        }catch (Exception e){
+            Log.e(LOG_TAG, "Date Parsing Exception" + e);
+        }
+
+        Date currentDateTime = new Date(CalendarUtils.getCurrentTime());
+        if (pickedDateTime.before(currentDateTime)){
+            mView.showPickedTimeError();
+        }
     }
 
 }

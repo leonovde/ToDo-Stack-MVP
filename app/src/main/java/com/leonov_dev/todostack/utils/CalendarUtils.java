@@ -29,4 +29,11 @@ public class CalendarUtils {
         calendar.clear(Calendar.MILLISECOND);
         return calendar;
     }
+
+    public static long getCurrentTime(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.clear(Calendar.SECOND);
+        calendar.clear(Calendar.MILLISECOND);
+        return calendar.getTimeInMillis();
+    }
 }
