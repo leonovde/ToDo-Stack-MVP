@@ -71,6 +71,19 @@ public class ReminderPresenter implements ReminderDialogContract.Presenter {
 
     @Override
     public void checkTimeValidity(String date, String time, String standardDate, String standardTime) {
+        checkTimeValidityForResult(date, time, standardDate, standardTime, false);
+    }
+
+    @Override
+    public void checkTimeValidityAndClose(String date, String time, String standardDate, String standardTime) {
+        checkTimeValidityForResult(date, time, standardDate, standardTime, true);
+    }
+
+    private void checkTimeValidityForResult(String date,
+                                            String time,
+                                            String standardDate,
+                                            String standardTime,
+                                            boolean isToCloseDialog){
         if (standardDate.equals(date)) {
             mView.showPickedDateError();
             if (standardTime.equals(time)) {
@@ -86,12 +99,16 @@ public class ReminderPresenter implements ReminderDialogContract.Presenter {
         try {
             pickedDateTime = formatter.parse(fullDateString);
         }catch (Exception e){
-            Log.e(LOG_TAG, "Date Parsing Exception" + e);
+            Log.e(LOG_TAG, "Date Parsing Exception " + e);
         }
 
         Date currentDateTime = new Date(CalendarUtils.getCurrentTime());
         if (pickedDateTime.before(currentDateTime)){
             mView.showPickedTimeError();
+        } else {
+            if (isToCloseDialog) {
+                mView.closeDialog();
+            }
         }
     }
 

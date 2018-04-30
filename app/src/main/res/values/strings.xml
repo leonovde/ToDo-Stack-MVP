@@ -27,4 +27,6 @@
     <string name="dialog_button_cancel">CANCEL</string>
     <string name="dialog_button_save">SAVE</string>
     <string name="dialog_button_delete">DELETE</string>
+    <string name="incorrect_date">INCORRECT DATE</string>
+    <string name="incorrect_time">INCORRECT TIME</string>
 </resources>

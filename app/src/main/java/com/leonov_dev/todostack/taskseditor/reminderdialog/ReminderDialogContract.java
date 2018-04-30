@@ -19,6 +19,8 @@ public interface ReminderDialogContract {
 
         void showPickedDateError();
 
+        void closeDialog();
+
     }
 
     interface Presenter extends BasePresenter<View>{
@@ -34,6 +36,8 @@ public interface ReminderDialogContract {
         void populateDialogTime(String time);
 
         void checkTimeValidity(String date, String time, String standardDate, String standardTime);
+
+        void checkTimeValidityAndClose(String date, String time, String standardDate, String standardTime);
 
     }
 }

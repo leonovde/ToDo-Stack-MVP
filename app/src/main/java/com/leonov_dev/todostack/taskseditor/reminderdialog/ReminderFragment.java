@@ -52,12 +52,15 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
 
     private LinearLayout mDateTimeLayout;
     private TextView mDatePickerTv;
+    private TextView mDatePickerError;
     private TextView mTimePickerTv;
+    private TextView mTimePickerError;
 
     private Spinner mLocationPickerSpinner;
 
     private static final String DATE_DIALOG = "DateDialog";
     private static final String TIME_DIALOG = "TimeDialog";
+
 
     DatePickerListener mDatePickerListener = new DatePickerListener() {
 
@@ -87,6 +90,12 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
         mDateTimeLayout = rootView.findViewById(R.id.reminder_dialog_date_time_layout);
         mDatePickerTv = rootView.findViewById(R.id.time_reminder_date_tv);
         mTimePickerTv = rootView.findViewById(R.id.time_reminder_time_tv);
+
+        mDatePickerError = rootView.findViewById(R.id.time_reminder_date_error_tv);
+        mTimePickerError = rootView.findViewById(R.id.time_reminder_time_error_tv);
+
+        mDatePickerError.setVisibility(View.GONE);
+        mTimePickerError.setVisibility(View.GONE);
 
         mLocationPickerSpinner = rootView.findViewById(R.id.location_spinner);
         mLocationPickerSpinner.setVisibility(View.GONE);
@@ -136,12 +145,7 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
         builder.setView(rootView).setPositiveButton(R.string.dialog_button_save, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {
-                mPresenter.checkTimeValidity(
-                        mDatePickerTv.getText().toString(),
-                        mTimePickerTv.getText().toString(),
-                        getString(R.string.select_date_reminder_tv),
-                        getString(R.string.select_time_rendinder_tv));
-                // TODO check date, pass data to the activity
+                // All logic is on resume
             }
         });
 
@@ -165,6 +169,19 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
     @Override
     public void onResume() {
         super.onResume();
+
+        final AlertDialog dialog = (AlertDialog) getDialog();
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPresenter.checkTimeValidity(
+                        mDatePickerTv.getText().toString(),
+                        mTimePickerTv.getText().toString(),
+                        getString(R.string.select_date_reminder_tv),
+                        getString(R.string.select_time_rendinder_tv));
+            }
+        });
+
         mPresenter.takeView(this);
     }
 
@@ -188,23 +205,30 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
 
     @Override
     public void setDate(String date) {
+        mDatePickerError.setVisibility(View.GONE);
         mDatePickerTv.setText(date);
     }
 
     @Override
     public void setTime(String time) {
+        mTimePickerError.setVisibility(View.GONE);
         mTimePickerTv.setText(time);
     }
 
     @Override
     public void showPickedTimeError() {
-        Log.e(LOG_TAG, "Time Error");
+        mTimePickerError.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showPickedDateError() {
-        Log.e(LOG_TAG, "Date Error");
+        mDatePickerError.setVisibility(View.VISIBLE);
         //TODO make it red or something
+    }
+
+    @Override
+    public void closeDialog() {
+        getDialog().dismiss();
     }
 
     interface DatePickerListener{
