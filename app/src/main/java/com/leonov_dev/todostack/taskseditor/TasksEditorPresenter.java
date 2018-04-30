@@ -97,6 +97,11 @@ public class TasksEditorPresenter implements TasksEditorContract.Presenter {
 
     }
 
+    @Override
+    public void populateReminder(String reminder) {
+        mTasksEditorView.setReminder(reminder);
+    }
+
     public void fillToDo(Task task){
         mTasksEditorView.setTitle(task.getTitle());
         mTasksEditorView.setDescription(task.getDescription());

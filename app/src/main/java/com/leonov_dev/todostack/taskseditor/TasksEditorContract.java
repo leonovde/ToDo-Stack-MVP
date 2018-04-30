@@ -32,6 +32,8 @@ public interface TasksEditorContract {
 
         void populateTask();
 
+        void populateReminder(String reminder);
+
         boolean isDataMissing();
 
     }

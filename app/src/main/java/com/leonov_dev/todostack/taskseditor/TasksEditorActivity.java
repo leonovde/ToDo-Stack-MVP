@@ -26,7 +26,8 @@ import dagger.Lazy;
 import dagger.android.support.DaggerAppCompatActivity;
 
 @ActivityScoped
-public class TasksEditorActivity extends DaggerAppCompatActivity implements TasksEditorContract.View {
+public class TasksEditorActivity extends DaggerAppCompatActivity implements TasksEditorContract.View,
+    ReminderFragment.TaskReminderSaveListener{
 
     @Inject
     TasksEditorContract.Presenter mPresenter;
@@ -42,18 +43,6 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
 
     public static final String REMINDER_DIALOG_TAG = "ReminderDialog";
 
-    interface TaskReminderSaveListener{
-
-        void onReminderSaved();
-
-    }
-
-    TaskReminderSaveListener mTaskReminderSaveListener = new TaskReminderSaveListener() {
-        @Override
-        public void onReminderSaved() {
-
-        }
-    };
 
     private EditText mTitleEditText;
     private EditText mDescriptionText;
@@ -153,7 +142,7 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
 
     @Override
     public void setReminder(String time) {
-
+        mReminderTextView.setText(time);
     }
 
     @Override
@@ -166,4 +155,19 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
         onBackPressed();
         return true;
     }
+
+    //TODO These one line calls... ??? Is that correct?
+    @Override
+    public void onReminderSaved(String reminder) {
+        mPresenter.populateReminder(reminder);
+    }
+
+    /** TODO create a Reminder.
+     * Save a Task with the reminder
+     * Populate the task when opening existing task
+     * Populate the dialog while opening the task
+     * Set the assigned date to the reminder date
+     */
+
+
 }

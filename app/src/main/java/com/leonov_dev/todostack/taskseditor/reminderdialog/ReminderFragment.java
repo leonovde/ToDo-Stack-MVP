@@ -7,6 +7,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -25,6 +26,7 @@ import android.widget.Toast;
 
 import com.leonov_dev.todostack.R;
 import com.leonov_dev.todostack.di.ActivityScoped;
+import com.leonov_dev.todostack.taskseditor.TasksEditorActivity;
 import com.leonov_dev.todostack.utils.CalendarUtils;
 
 import java.util.Calendar;
@@ -44,6 +46,14 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
     public ReminderFragment(){
 
     }
+
+    public interface TaskReminderSaveListener{
+
+        void onReminderSaved(String reminder);
+
+    }
+
+    TaskReminderSaveListener mTaskReminderSaveListener;
 
 //    @Inject
 //    Lazy<TimerReminderFragment> mTimeReminderFragment;
@@ -72,6 +82,7 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
     };
 
     TimePickerListener mTimePickerListener = new TimePickerListener() {
+
         @Override
         public void onTimeSet(int hourOfDay, int minute) {
             mPresenter.populateDialogTime(hourOfDay + ":" + minute);
@@ -223,11 +234,12 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
     @Override
     public void showPickedDateError() {
         mDatePickerError.setVisibility(View.VISIBLE);
-        //TODO make it red or something
     }
 
     @Override
     public void closeDialog() {
+        mTaskReminderSaveListener.onReminderSaved(mDatePickerTv.getText().toString() + " " +
+                mTimePickerTv.getText().toString());
         getDialog().dismiss();
     }
 
@@ -241,6 +253,16 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
 
         void onTimeSet(int hourOfDay, int minute);
 
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            mTaskReminderSaveListener = (TaskReminderSaveListener) context;
+        } catch (Exception e) {
+            Log.e(LOG_TAG, "Error Attaching listener " + e);
+        }
     }
 
     @SuppressLint("ValidFragment")
@@ -280,6 +302,7 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
         public DateReminderFragment(DatePickerListener listener){
             mListener = listener;
         }
+
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
