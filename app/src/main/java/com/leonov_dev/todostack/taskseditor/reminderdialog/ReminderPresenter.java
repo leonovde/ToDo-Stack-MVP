@@ -74,6 +74,7 @@ public class ReminderPresenter implements ReminderDialogContract.Presenter {
         checkTimeValidityForResult(date, time, standardDate, standardTime, false);
     }
 
+    //TODO should have only this method
     @Override
     public void checkTimeValidityAndClose(String date, String time, String standardDate, String standardTime) {
         checkTimeValidityForResult(date, time, standardDate, standardTime, true);
@@ -93,6 +94,12 @@ public class ReminderPresenter implements ReminderDialogContract.Presenter {
             return;
         }
 
+        //Because date can be set but time not
+        if (standardTime.equals(time)) {
+            mView.showPickedTimeError();
+            return;
+        }
+
         String fullDateString = date + " " + time;
         Date pickedDateTime = null;
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm");
@@ -103,6 +110,8 @@ public class ReminderPresenter implements ReminderDialogContract.Presenter {
         }
 
         Date currentDateTime = new Date(CalendarUtils.getCurrentTime());
+        Log.e(LOG_TAG, "Current time " + currentDateTime.toString());
+        Log.e(LOG_TAG, "Picked time " + pickedDateTime.toString());
         if (pickedDateTime.before(currentDateTime)){
             mView.showPickedTimeError();
         } else {

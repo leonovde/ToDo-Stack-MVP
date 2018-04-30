@@ -174,7 +174,7 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPresenter.checkTimeValidity(
+                mPresenter.checkTimeValidityAndClose(
                         mDatePickerTv.getText().toString(),
                         mTimePickerTv.getText().toString(),
                         getString(R.string.select_date_reminder_tv),
@@ -297,7 +297,7 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
 
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            mListener.onDateSet(year, month, dayOfMonth);
+            mListener.onDateSet(year, month + 1, dayOfMonth);
         }
 
     }

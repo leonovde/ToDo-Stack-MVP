@@ -42,6 +42,19 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
 
     public static final String REMINDER_DIALOG_TAG = "ReminderDialog";
 
+    interface TaskReminderSaveListener{
+
+        void onReminderSaved();
+
+    }
+
+    TaskReminderSaveListener mTaskReminderSaveListener = new TaskReminderSaveListener() {
+        @Override
+        public void onReminderSaved() {
+
+        }
+    };
+
     private EditText mTitleEditText;
     private EditText mDescriptionText;
     private LinearLayout mReminderLinearLayout;
