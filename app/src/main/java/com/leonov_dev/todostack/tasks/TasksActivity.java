@@ -35,7 +35,9 @@ import com.leonov_dev.todostack.data.Task;
 import com.leonov_dev.todostack.di.ActivityScoped;
 import com.leonov_dev.todostack.taskseditor.TasksEditorActivity;
 import com.leonov_dev.todostack.tasksinfo.TasksInfoActivity;
+import com.leonov_dev.todostack.utils.DateConverter;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -222,6 +224,8 @@ public class TasksActivity extends DaggerAppCompatActivity
     //Declare static class as it is a member of an Activity
     private static class TasksAdapter extends ArrayAdapter<Task>{
 
+        private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM yy");
+
         public TasksAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<Task> tasks) {
             super(context, 0, tasks);
         }
@@ -240,8 +244,10 @@ public class TasksActivity extends DaggerAppCompatActivity
             TextView taskDate = listItemView.findViewById(R.id.task_made_time_preview);
 
             taskTitle.setText(task.getTitle());
-            //TODO should be a date converted to dd/mm/yyyy
-            taskDate.setText(String.valueOf(task.getModifyDate()));
+
+            taskDate.setText(
+                    simpleDateFormat.format(DateConverter.fromTimestamp(task.getModifyDate())));
+
 
             return listItemView;
         }

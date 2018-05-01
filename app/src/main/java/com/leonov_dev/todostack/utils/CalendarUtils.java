@@ -36,4 +36,5 @@ public class CalendarUtils {
         calendar.clear(Calendar.MILLISECOND);
         return calendar.getTimeInMillis();
     }
+
 }
