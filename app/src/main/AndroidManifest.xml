@@ -28,6 +28,7 @@
                 android:value=".tasks.TasksActivity" />
         </activity>
         <activity android:name=".tasksinfo.TasksInfoActivity" />
+        <activity android:name=".statistics.StatisticsActivity"></activity>
     </application>
 
 </manifest>

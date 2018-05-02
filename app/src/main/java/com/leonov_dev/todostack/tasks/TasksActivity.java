@@ -144,14 +144,19 @@ public class TasksActivity extends DaggerAppCompatActivity
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
-        if (id == R.id.drawer_todo){
-
-        } else if (id == R.id.drawer_statistics){
-
+        switch (id){
+            case R.id.drawer_todo:
+                break;
+            case R.id.drawer_statistics:
+//                Intent inte = new Intent();
+//                startActivity(intent);
+                break;
+            default:
+                break;
         }
 
+        item.setChecked(true);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
