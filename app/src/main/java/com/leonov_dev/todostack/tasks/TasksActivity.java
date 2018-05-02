@@ -1,38 +1,32 @@
 package com.leonov_dev.todostack.tasks;
 
+import android.app.AlarmManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.leonov_dev.todostack.R;
 import com.leonov_dev.todostack.data.Task;
-import com.leonov_dev.todostack.di.ActivityScoped;
+import com.leonov_dev.todostack.statistics.StatisticsActivity;
 import com.leonov_dev.todostack.taskseditor.TasksEditorActivity;
 import com.leonov_dev.todostack.tasksinfo.TasksInfoActivity;
 import com.leonov_dev.todostack.utils.DateConverter;
@@ -85,14 +79,12 @@ public class TasksActivity extends DaggerAppCompatActivity
         mListAdapter = new TasksAdapter(this, 0, new ArrayList<Task>());
         mListView.setAdapter(mListAdapter);
 
-
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 showTaskInfo(mTasks.get(position).mId);
             }
         });
-
     }
 
     @Override
@@ -149,8 +141,8 @@ public class TasksActivity extends DaggerAppCompatActivity
             case R.id.drawer_todo:
                 break;
             case R.id.drawer_statistics:
-//                Intent inte = new Intent();
-//                startActivity(intent);
+                Intent intent = new Intent(this, StatisticsActivity.class);
+                startActivity(intent);
                 break;
             default:
                 break;

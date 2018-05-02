@@ -1,5 +1,7 @@
 package com.leonov_dev.todostack.di;
 
+import com.leonov_dev.todostack.statistics.StatisticsActivity;
+import com.leonov_dev.todostack.statistics.StatisticsModule;
 import com.leonov_dev.todostack.tasks.TasksActivity;
 import com.leonov_dev.todostack.tasks.TasksModule;
 import com.leonov_dev.todostack.taskseditor.TasksEditorActivity;
@@ -24,5 +26,9 @@ public abstract class ActivityBindingModule {
     @ActivityScoped
     @ContributesAndroidInjector(modules = TasksInfoModule.class)
     abstract TasksInfoActivity provideTasksInfoModule();
+
+    @ActivityScoped
+    @ContributesAndroidInjector(modules = StatisticsModule.class)
+    abstract StatisticsActivity providesStatisticsModule();
 
 }
