@@ -31,4 +31,7 @@
     <string name="incorrect_time">INCORRECT TIME</string>
     <string name="todo_menu_item">ToDo</string>
     <string name="statistics_menu_item">Statistics</string>
+
+    <string name="productive_fragment_name">Productivity</string>
+    <string name="unproductive_fragment_name">Apps Usage</string>
 </resources>
