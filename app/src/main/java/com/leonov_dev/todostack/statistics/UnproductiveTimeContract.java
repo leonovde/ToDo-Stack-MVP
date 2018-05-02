@@ -11,6 +11,7 @@ public interface UnproductiveTimeContract {
 
     interface Presenter extends BasePresenter<View> {
 
+        void loadApps();
     }
 
 }
