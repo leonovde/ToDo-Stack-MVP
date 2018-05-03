@@ -13,7 +13,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import javax.annotation.Nullable;
+import android.support.annotation.Nullable;
 import javax.inject.Inject;
 
 @ActivityScoped

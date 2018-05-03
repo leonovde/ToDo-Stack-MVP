@@ -13,7 +13,7 @@ import com.leonov_dev.todostack.tasksinfo.TasksInfoActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Nullable;
+import android.support.annotation.Nullable;
 import javax.inject.Inject;
 
 @ActivityScoped

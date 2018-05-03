@@ -4,7 +4,7 @@ import com.leonov_dev.todostack.BasePresenter;
 import com.leonov_dev.todostack.BaseView;
 import com.leonov_dev.todostack.data.Task;
 
-import javax.annotation.Nullable;
+import android.support.annotation.Nullable;
 
 public interface TasksEditorContract {
 

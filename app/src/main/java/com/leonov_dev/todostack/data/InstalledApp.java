@@ -12,7 +12,7 @@ public class InstalledApp {
         this.name = name;
         this.icon = icon;
     }
-    
+
     public String getName() {
         return name;
     }

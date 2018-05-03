@@ -8,7 +8,7 @@ import com.leonov_dev.todostack.data.TaskDataSoruce;
 import com.leonov_dev.todostack.data.TasksRepository;
 import com.leonov_dev.todostack.di.ActivityScoped;
 
-import javax.annotation.Nullable;
+import android.support.annotation.Nullable;
 import javax.inject.Inject;
 
 @ActivityScoped

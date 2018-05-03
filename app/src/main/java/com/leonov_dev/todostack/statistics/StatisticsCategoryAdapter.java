@@ -1,16 +1,29 @@
 package com.leonov_dev.todostack.statistics;
 
+
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
+
 
 import com.leonov_dev.todostack.R;
+
+import javax.inject.Inject;
 
 
 public class StatisticsCategoryAdapter extends FragmentPagerAdapter {
     //TODO switch to FragmentManager, not support one
     private Context mContext;
+
+    private final String LOG_TAG = StatisticsCategoryAdapter.class.getSimpleName();
+    //TODO how to inject them?
+//    @Inject
+//    UnproductiveTimeFragment mUnproductiveTimeFragment;
+//
+//    @Inject
+//    ProductiveTimeFragment mProductiveTimeFragment;
 
     public StatisticsCategoryAdapter(Context context, FragmentManager fm) {
         super(fm);
