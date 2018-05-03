@@ -11,14 +11,14 @@
     android:paddingTop="@dimen/list_item_padding">
 
     <ImageView
-        android:id="@+id/app_icon"
+        android:id="@+id/app_icon_iv"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_gravity="center_vertical" />
 
     <TextView
-        android:id="@+id/task_made_time_preview"
-        android:layout_width="wrap_content"
+        android:id="@+id/app_name_tv"
+        android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_gravity="center_vertical"
         android:layout_height="wrap_content"

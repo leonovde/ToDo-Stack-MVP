@@ -28,7 +28,6 @@ public class UnproductiveTimePresenter implements UnproductiveTimeContract.Prese
 
     @Override
     public void takeView(UnproductiveTimeContract.View view) {
-        Log.e(LOG_TAG, "took view");
         mView = view;
         loadApps();
     }
@@ -40,7 +39,6 @@ public class UnproductiveTimePresenter implements UnproductiveTimeContract.Prese
 
     @Override
     public void loadApps() {
-        Log.e(LOG_TAG, "loading list of apps");
         mView.showListOfApps(DeviceInfoUtils.getInstalledApps(mPackageManager));
     }
 }
