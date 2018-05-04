@@ -16,7 +16,7 @@ public class DeviceInfoUtils {
         List<InstalledApp> installedApps = new ArrayList<>();
         List<PackageInfo> packs = packageManager.getInstalledPackages(PackageInfo.INSTALL_LOCATION_AUTO);
         for (PackageInfo pack : packs){
-            if (isSystemPackage(pack)){
+            if (isNotSystemPackage(pack)){
                 Drawable icon = pack.applicationInfo.loadIcon(packageManager);
                 String appName = pack.applicationInfo.loadLabel(packageManager).toString();
                 installedApps.add(new InstalledApp(appName, icon));
@@ -25,7 +25,15 @@ public class DeviceInfoUtils {
         return installedApps;
     }
 
-    public static boolean isSystemPackage(PackageInfo info) {
+    public static boolean isNotSystemPackage(PackageInfo info) {
         return ((info.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0);
+    }
+
+    //YOUTUBE, CHROME
+    public static boolean isAnException(PackageInfo info) {
+        if ((info.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0){
+
+        }
+        return true;
     }
 }

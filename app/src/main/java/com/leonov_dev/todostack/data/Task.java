@@ -31,15 +31,24 @@ public final class Task {
     @ColumnInfo(name = "reminder_condition")
     public String mReminderCondition;
 
+    @ColumnInfo(name = "task_duration")
+    public long mDuration;
+
+    @ColumnInfo(name = "task_time_spent")
+    public long mTimeSpent;
+
 //    //Used to get task of a particular date
 //    @ColumnInfo(name = "modify_date_converted")
 //    public Date mModifyDateConverted;
 
+    //Constructor For the Task with only Title and Description
     public Task (String title, String description, long modifyDate, long assignedDate){
         this.mTitle = title;
         this.mDescription = description;
         this.modifyDate = modifyDate;
         this.mAssignedDate = assignedDate;
+        this.mDuration = 0;
+        mTimeSpent = 0;
     }
 
     @Ignore

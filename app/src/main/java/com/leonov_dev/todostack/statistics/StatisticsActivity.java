@@ -55,17 +55,12 @@ public class StatisticsActivity extends DaggerAppCompatActivity implements
 
         mViewPagerMode = findViewById(R.id.modes_view_pager);
 
-        Log.e(LOG_TAG, "Reached adapter ");
-
         //How to provide tho??
         StatisticsCategoryAdapter modeAdapter =
                 new StatisticsCategoryAdapter(this, getSupportFragmentManager());
-        Log.e(LOG_TAG, "Reached adapter 2");
         mViewPagerMode.setAdapter(modeAdapter);
-        Log.e(LOG_TAG, "Reached adapter 3");
         mTabLayout = findViewById(R.id.modes_tab_view);
         mTabLayout.setupWithViewPager(mViewPagerMode);
-        Log.e(LOG_TAG, "Reached adapter 4");
     }
 
     @Override

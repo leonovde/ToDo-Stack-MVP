@@ -2,6 +2,8 @@ package com.leonov_dev.todostack.data;
 
 import android.support.annotation.NonNull;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
 public interface TaskDataSoruce {

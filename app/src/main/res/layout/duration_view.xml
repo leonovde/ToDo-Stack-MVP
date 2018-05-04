@@ -1,5 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout
-    android:id="@+id/reminder_linear_layout"
+    android:id="@+id/duration_linear_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -7,14 +9,14 @@
     android:orientation="horizontal">
 
     <ImageView
-        android:id="@+id/reminder_image"
+        android:id="@+id/duration_icon"
         android:layout_width="@dimen/activity_inner_icon"
         android:layout_height="@dimen/activity_inner_icon"
         android:layout_weight="0"
-        android:src="@drawable/ic_reminder_24dp"/>
+        android:src="@drawable/ic_timer_black_24dp"/>
 
     <TextView
-        android:id="@+id/reminder_condition"
+        android:id="@+id/duration_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"

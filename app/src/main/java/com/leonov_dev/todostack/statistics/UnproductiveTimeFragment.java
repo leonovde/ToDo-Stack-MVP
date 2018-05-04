@@ -44,7 +44,6 @@ public class UnproductiveTimeFragment extends dagger.android.support.DaggerFragm
 
     @Inject
     public UnproductiveTimeFragment() {
-        Log.e(LOG_TAG, "Unproductive born");
         // Required empty public constructor
     }
 
