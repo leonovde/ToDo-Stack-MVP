@@ -8,6 +8,8 @@ import com.leonov_dev.todostack.taskseditor.TasksEditorActivity;
 import com.leonov_dev.todostack.taskseditor.TasksEditorModule;
 import com.leonov_dev.todostack.tasksinfo.TasksInfoActivity;
 import com.leonov_dev.todostack.tasksinfo.TasksInfoModule;
+import com.leonov_dev.todostack.tasksinfo.pomodoro.PomodoroActivity;
+import com.leonov_dev.todostack.tasksinfo.pomodoro.PomodoroModule;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -30,5 +32,9 @@ public abstract class ActivityBindingModule {
     @ActivityScoped
     @ContributesAndroidInjector(modules = StatisticsModule.class)
     abstract StatisticsActivity providesStatisticsModule();
+
+    @ActivityScoped
+    @ContributesAndroidInjector(modules = PomodoroModule.class)
+    abstract PomodoroActivity providesPomodoroModule();
 
 }

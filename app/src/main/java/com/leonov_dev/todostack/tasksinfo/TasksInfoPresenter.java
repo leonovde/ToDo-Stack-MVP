@@ -48,6 +48,13 @@ public class TasksInfoPresenter implements TasksInfoContract.Presenter {
     }
 
     @Override
+    public void openPomodoro() {
+        if (mView != null) {
+            mView.showPomodoroTimer(mTaskId);
+        }
+    }
+
+    @Override
     public void takeView(TasksInfoContract.View view) {
         mView = view;
         showToDo();

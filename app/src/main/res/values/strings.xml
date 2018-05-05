@@ -34,4 +34,6 @@
 
     <string name="productive_fragment_name">Productivity</string>
     <string name="unproductive_fragment_name">Apps Usage</string>
+    <string name="start_the_pomodoro">START</string>
+    <string name="stop_the_pomidiro">STOP</string>
 </resources>

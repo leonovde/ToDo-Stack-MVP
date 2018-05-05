@@ -11,6 +11,8 @@ public interface TasksInfoContract {
 
         void showTasksEditor(long taskId);
 
+        void showPomodoroTimer(long taskId);
+
         void showTaskDeleted();
 
         void showTasks();
@@ -28,6 +30,8 @@ public interface TasksInfoContract {
         void editTask();
 
         void deleteTask();
+
+        void openPomodoro();
     }
 
 }

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     android:layout_height="match_parent"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -34,6 +35,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="top"
+                android:minHeight="@dimen/description_view_height_min"
+                android:maxHeight="@dimen/description_view_height_max"
                 android:hint="@string/task_description_hint" />
 
             <include
@@ -50,8 +53,16 @@
 
         </LinearLayout>
 
+
     </ScrollView>
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/start_pomodoro_fab"
+        android:layout_width="@dimen/fab_size"
+        android:layout_height="@dimen/fab_size"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/fab_margin"/>
 
-
-</LinearLayout>
+</RelativeLayout>

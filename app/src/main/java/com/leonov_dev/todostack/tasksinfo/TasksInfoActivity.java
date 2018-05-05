@@ -1,6 +1,7 @@
 package com.leonov_dev.todostack.tasksinfo;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import com.leonov_dev.todostack.R;
 import com.leonov_dev.todostack.di.ActivityScoped;
 import com.leonov_dev.todostack.taskseditor.TasksEditorActivity;
+import com.leonov_dev.todostack.tasksinfo.pomodoro.PomodoroActivity;
 
 import javax.inject.Inject;
 
@@ -26,6 +28,8 @@ public class TasksInfoActivity extends DaggerAppCompatActivity implements TasksI
     private TextView mDescriptionTextView;
     private LinearLayout mReminderLinearLayout;
     private TextView mReminderTextView;
+
+    private FloatingActionButton mFab;
 
     public static final String TASK_ID_KEY = "taks_id";
 
@@ -48,6 +52,7 @@ public class TasksInfoActivity extends DaggerAppCompatActivity implements TasksI
         mDescriptionTextView = findViewById(R.id.task_description_text_view);
         mReminderLinearLayout = findViewById(R.id.reminder_linear_layout);
         mReminderTextView = findViewById(R.id.reminder_condition);
+        mFab = findViewById(R.id.start_pomodoro_fab);
 
         mReminderLinearLayout.setVisibility(View.GONE);
 
@@ -55,6 +60,13 @@ public class TasksInfoActivity extends DaggerAppCompatActivity implements TasksI
         mActionBar = getSupportActionBar();
         mActionBar.setDisplayHomeAsUpEnabled(true);
         mActionBar.setTitle(R.string.new_task_activity_title);
+
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPresenter.openPomodoro();
+            }
+        });
     }
 
     @Override
@@ -103,7 +115,13 @@ public class TasksInfoActivity extends DaggerAppCompatActivity implements TasksI
     public void showTasksEditor(long taskId) {
         Intent intent = new Intent(this, TasksEditorActivity.class);
         intent.putExtra(TasksEditorActivity.TASK_EDIT_KEY, taskId);
-        Log.e(LOG_TAG, "We put id of task = " + taskId);
+        startActivity(intent);
+    }
+
+    @Override
+    public void showPomodoroTimer(long taskId) {
+        Intent intent = new Intent(this, PomodoroActivity.class);
+        intent.putExtra(PomodoroActivity.TASK_ID_KEY, taskId);
         startActivity(intent);
     }
 

@@ -34,7 +34,7 @@
             <EditText
                 android:id="@+id/add_task_description"
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
+                android:layout_height="@dimen/description_view_height_max"
                 android:gravity="top"
                 android:hint="@string/task_description_hint" />
 

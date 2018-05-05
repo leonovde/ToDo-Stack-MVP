@@ -1,9 +1,6 @@
 package com.leonov_dev.todostack.tasksinfo;
 
-import com.leonov_dev.todostack.data.TasksRepository;
 import com.leonov_dev.todostack.di.ActivityScoped;
-
-import javax.inject.Singleton;
 
 import dagger.Binds;
 import dagger.Module;
