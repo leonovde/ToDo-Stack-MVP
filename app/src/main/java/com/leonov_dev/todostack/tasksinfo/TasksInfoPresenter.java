@@ -39,10 +39,8 @@ public class TasksInfoPresenter implements TasksInfoContract.Presenter {
 
     @Override
     public void deleteTask() {
-        Log.e(LOG_TAG, "Task is deleted 1 id: " + mTaskId);
         mTasksRepository.deleteTaskById(mTaskId);
         if (mView != null){
-            Log.e(LOG_TAG, "Task is deleted 2");
             mView.showTaskDeleted();
         }
     }
@@ -66,14 +64,12 @@ public class TasksInfoPresenter implements TasksInfoContract.Presenter {
     }
 
     private void showToDo(){
-        Log.e(LOG_TAG, "ShowingTodo triggered, ID = " + mTaskId);
         mTasksRepository.getTask(mTaskId, new TaskDataSoruce.GetTaskCallback() {
             @Override
             public void onTaskLoaded(Task task) {
                 if (mView == null) {
                     return;
                 }
-                Log.e(LOG_TAG, "Filling todo is triggered");
                 fillTodo(task);
             }
 

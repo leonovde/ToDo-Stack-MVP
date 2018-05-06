@@ -1,6 +1,9 @@
 package com.leonov_dev.todostack.tasksinfo.pomodoro;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.leonov_dev.todostack.R;
 
@@ -14,6 +17,10 @@ public class PomodoroActivity extends DaggerAppCompatActivity implements Pomodor
 
     @Inject
     public PomodoroContract.Presenter mPresenter;
+
+    private Button mStartStopButton;
+    private ProgressBar mProgressBar;
+    private TextView mTaskTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +41,15 @@ public class PomodoroActivity extends DaggerAppCompatActivity implements Pomodor
     }
 
     @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    @Override
     public void setTimer() {
 
     }
+
+
 }

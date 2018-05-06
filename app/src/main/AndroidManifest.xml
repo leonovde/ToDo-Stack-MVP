@@ -31,7 +31,11 @@
         <activity
             android:name=".statistics.StatisticsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".tasksinfo.pomodoro.PomodoroActivity"></activity>
+        <activity android:name=".tasksinfo.pomodoro.PomodoroActivity"
+            android:parentActivityName=".tasksinfo.TasksInfoActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".tasksinfo.TasksInfoActivity" /></activity>
     </application>
 
 </manifest>
