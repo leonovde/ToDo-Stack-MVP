@@ -39,11 +39,11 @@ public class CalendarUtils {
     }
 
     public static SimpleDateFormat getFormatForTime(){
-        return new SimpleDateFormat();
+        return new SimpleDateFormat("HH:mm");
     }
 
     public static SimpleDateFormat getFormatForDate(){
-        return new SimpleDateFormat();
+        return new SimpleDateFormat("yyyy/MM/dd");
     }
 
     public static SimpleDateFormat getFormatForDateAndTime(){

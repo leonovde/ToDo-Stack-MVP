@@ -67,7 +67,7 @@ public class TasksEditorPresenter implements TasksEditorContract.Presenter {
             //If the duration is 0:00 or 0:0 then insert 0 for the duration
             long durationTimer = 0;
             if (mContext.getString(R.string.duration_default_value).equals(duration) ||
-                    "0:0".equals(duration)){
+                    "0:0".equals(duration) || "00:00".equals(duration)){
                 durationTimer = 0;
             } else {
                 //TODO add date time formatter and format HH:mm

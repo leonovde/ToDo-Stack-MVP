@@ -21,4 +21,21 @@ public class DurationPresenter implements DurationContract.Presenter {
         mView = null;
     }
 
+    //TODO change to formatter or regular expression
+    @Override
+    public void formatTime(String hours, String minutes) {
+        String formHours;
+        String formMins;
+        if (hours.length() <= 1){
+            formHours = "0" + hours;
+        } else {
+            formHours = hours;
+        }
+        if (minutes.length() <= 1){
+            formMins = "0" + minutes;
+        } else {
+            formMins = minutes;
+        }
+        mView.closeDialog(formHours + ":" + formMins);
+    }
 }

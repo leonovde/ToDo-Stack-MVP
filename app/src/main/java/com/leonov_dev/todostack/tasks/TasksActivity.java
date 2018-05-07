@@ -29,6 +29,7 @@ import com.leonov_dev.todostack.data.Task;
 import com.leonov_dev.todostack.statistics.StatisticsActivity;
 import com.leonov_dev.todostack.taskseditor.TasksEditorActivity;
 import com.leonov_dev.todostack.tasksinfo.TasksInfoActivity;
+import com.leonov_dev.todostack.utils.CalendarUtils;
 import com.leonov_dev.todostack.utils.DateConverter;
 
 import java.text.SimpleDateFormat;
@@ -221,7 +222,7 @@ public class TasksActivity extends DaggerAppCompatActivity
     //Declare static class as it is a member of an Activity
     private static class TasksAdapter extends ArrayAdapter<Task>{
 
-        private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM yy");
+        private SimpleDateFormat simpleDateFormat = CalendarUtils.getFormatForDate();
 
         public TasksAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<Task> tasks) {
             super(context, 0, tasks);

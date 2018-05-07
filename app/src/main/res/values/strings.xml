@@ -39,6 +39,8 @@
     <string name="reminder_caption">Set Trigger</string>
     <string name="duration_default_value">0:00</string>
 
-    <!-- Formatter -->
 
+    <!-- Formatter -->
+    <string name="hours_picker_formatter">%d h</string>
+    <string name="minutes_picker_formatter">%d m</string>
 </resources>

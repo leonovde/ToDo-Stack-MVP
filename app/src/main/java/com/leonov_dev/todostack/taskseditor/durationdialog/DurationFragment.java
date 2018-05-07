@@ -28,6 +28,12 @@ public class DurationFragment extends DialogFragment implements DurationContract
 
     }
 
+    @Override
+    public void closeDialog(String time) {
+        mTaskDurationSaveListener.onDurationSaved(time);
+        getDialog().dismiss();
+    }
+
     public interface TaskDurationSaveListener{
 
         void onDurationSaved(String duration);
@@ -53,9 +59,8 @@ public class DurationFragment extends DialogFragment implements DurationContract
                 new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {
-                Log.e(LOG_TAG, mHourPicker.getValue() + " : " + mMinutesPicker.getValue());
-                mTaskDurationSaveListener.onDurationSaved(mHourPicker.getValue() + ":" +
-                        mMinutesPicker.getValue());
+//                mTaskDurationSaveListener.onDurationSaved(mHourPicker.getValue() + ":" +
+//                        mMinutesPicker.getValue());
             }
         });
 
@@ -91,6 +96,16 @@ public class DurationFragment extends DialogFragment implements DurationContract
     @Override
     public void onResume() {
         super.onResume();
+
+        final AlertDialog dialog = (AlertDialog) getDialog();
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPresenter.formatTime(String.valueOf(mHourPicker.getValue()),
+                        String.valueOf(mMinutesPicker.getValue()));
+            }
+        });
+
         mPresenter.takeView(this);
     }
 

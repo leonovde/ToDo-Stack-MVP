@@ -7,9 +7,14 @@ public interface DurationContract {
 
     interface View extends BaseView<Presenter> {
 
+        void closeDialog(String time);
+
     }
 
     interface Presenter extends BasePresenter<View>{
+
+        void formatTime(String hours, String minutes);
+
 
     }
 }
