@@ -59,8 +59,7 @@ public class DurationFragment extends DialogFragment implements DurationContract
                 new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {
-//                mTaskDurationSaveListener.onDurationSaved(mHourPicker.getValue() + ":" +
-//                        mMinutesPicker.getValue());
+                //Logic is on Resume
             }
         });
 
@@ -76,7 +75,7 @@ public class DurationFragment extends DialogFragment implements DurationContract
                 new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                mPresenter.deleteDuration();
             }
         });
 

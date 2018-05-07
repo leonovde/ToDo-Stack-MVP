@@ -15,6 +15,6 @@ public interface DurationContract {
 
         void formatTime(String hours, String minutes);
 
-
+        void deleteDuration();
     }
 }

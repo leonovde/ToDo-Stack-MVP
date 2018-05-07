@@ -1,14 +1,20 @@
 package com.leonov_dev.todostack.taskseditor.durationdialog;
 
+import android.content.Context;
+
+import com.leonov_dev.todostack.R;
+
 import javax.inject.Inject;
 
 public class DurationPresenter implements DurationContract.Presenter {
 
     private DurationContract.View mView;
 
-    @Inject
-    public DurationPresenter(){
+    private Context mContext;
 
+    @Inject
+    public DurationPresenter(Context context){
+        mContext = context;
     }
 
     @Override
@@ -37,5 +43,11 @@ public class DurationPresenter implements DurationContract.Presenter {
             formMins = minutes;
         }
         mView.closeDialog(formHours + ":" + formMins);
+    }
+
+    @Override
+    public void deleteDuration() {
+        String defaultTime = mContext.getString(R.string.duration_default_value);
+        mView.closeDialog(defaultTime);
     }
 }
