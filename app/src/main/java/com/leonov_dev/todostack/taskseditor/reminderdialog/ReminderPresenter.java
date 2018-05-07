@@ -1,7 +1,9 @@
 package com.leonov_dev.todostack.taskseditor.reminderdialog;
 
+import android.content.Context;
 import android.util.Log;
 
+import com.leonov_dev.todostack.R;
 import com.leonov_dev.todostack.di.ActivityScoped;
 import com.leonov_dev.todostack.di.FragmentScoped;
 import com.leonov_dev.todostack.utils.CalendarUtils;
@@ -17,9 +19,11 @@ public class ReminderPresenter implements ReminderDialogContract.Presenter {
 
     private final String LOG_TAG = ReminderPresenter.class.getSimpleName();
 
-    @Inject
-    ReminderPresenter(){
+    private Context mContext;
 
+    @Inject
+    ReminderPresenter(Context context){
+        mContext = context;
     }
 
     private ReminderDialogUiType mReminderDialogUiType;
@@ -78,6 +82,11 @@ public class ReminderPresenter implements ReminderDialogContract.Presenter {
     @Override
     public void checkTimeValidityAndClose(String date, String time, String standardDate, String standardTime) {
         checkTimeValidityForResult(date, time, standardDate, standardTime, true);
+    }
+
+    @Override
+    public void deleteReminder() {
+        mView.closeDialogAndDeleteTime(mContext.getString(R.string.reminder_caption));
     }
 
     private void checkTimeValidityForResult(String date,

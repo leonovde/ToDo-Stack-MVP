@@ -21,6 +21,8 @@ public interface ReminderDialogContract {
 
         void closeDialog();
 
+        void closeDialogAndDeleteTime(String noReminderCaption);
+
     }
 
     interface Presenter extends BasePresenter<View>{
@@ -38,6 +40,8 @@ public interface ReminderDialogContract {
         void checkTimeValidity(String date, String time, String standardDate, String standardTime);
 
         void checkTimeValidityAndClose(String date, String time, String standardDate, String standardTime);
+
+        void deleteReminder();
 
     }
 }

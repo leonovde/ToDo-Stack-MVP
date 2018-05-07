@@ -170,7 +170,7 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
         builder.setNeutralButton(R.string.dialog_button_delete, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                mPresenter.deleteReminder();
             }
         });
 
@@ -240,6 +240,12 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
     public void closeDialog() {
         mTaskReminderSaveListener.onReminderSaved(mDatePickerTv.getText().toString() + " " +
                 mTimePickerTv.getText().toString());
+        getDialog().dismiss();
+    }
+
+    @Override
+    public void closeDialogAndDeleteTime(String noReminderCaption) {
+        mTaskReminderSaveListener.onReminderSaved(noReminderCaption);
         getDialog().dismiss();
     }
 
