@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.leonov_dev.todostack.R;
 import com.leonov_dev.todostack.di.ActivityScoped;
+import com.leonov_dev.todostack.taskseditor.durationdialog.DurationFragment;
 import com.leonov_dev.todostack.taskseditor.reminderdialog.ReminderFragment;
 
 import javax.inject.Inject;
@@ -27,13 +28,16 @@ import dagger.android.support.DaggerAppCompatActivity;
 
 @ActivityScoped
 public class TasksEditorActivity extends DaggerAppCompatActivity implements TasksEditorContract.View,
-    ReminderFragment.TaskReminderSaveListener{
+    ReminderFragment.TaskReminderSaveListener, DurationFragment.TaskDurationSaveListener{
 
     @Inject
     TasksEditorContract.Presenter mPresenter;
 
     @Inject
     Lazy<ReminderFragment> mReminderFragment;
+
+    @Inject
+    Lazy<DurationFragment> mDurationFragment;
 
 
     public static final int ADD_TASK_KEY = 1;
@@ -42,12 +46,15 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
     public static final String TASK_EDIT_KEY = "edit_task";
 
     public static final String REMINDER_DIALOG_TAG = "ReminderDialog";
+    public static final String DURATION_DIALOG_TAG = "DurationDialog";
 
 
     private EditText mTitleEditText;
     private EditText mDescriptionText;
     private LinearLayout mReminderLinearLayout;
     private TextView mReminderTextView;
+    private LinearLayout mDurationLinearLayout;
+    private TextView mDurationTextView;
 
     private ActionBar mActionBar;
 
@@ -69,11 +76,22 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
         mReminderLinearLayout = findViewById(R.id.reminder_linear_layout);
         mReminderTextView = findViewById(R.id.reminder_condition);
 
+        mDurationLinearLayout = findViewById(R.id.duration_linear_layout);
+        mDurationTextView = findViewById(R.id.duration_text_view);
+
         mReminderLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DialogFragment newFragment = mReminderFragment.get();
                 newFragment.show(getFragmentManager(), REMINDER_DIALOG_TAG);
+            }
+        });
+
+        mDurationLinearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment newFragment = mDurationFragment.get();
+                newFragment.show(getFragmentManager(), DURATION_DIALOG_TAG);
             }
         });
 
@@ -105,7 +123,8 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
             mPresenter.insertTask(
                     mTitleEditText.getText().toString(),
                     mDescriptionText.getText().toString(),
-                    mReminderTextView.getText().toString());
+                    mReminderTextView.getText().toString(),
+                    mDurationTextView.getText().toString());
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -146,6 +165,11 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
     }
 
     @Override
+    public void setDuration(String duration) {
+        mDurationTextView.setText(duration);
+    }
+
+    @Override
     public boolean isActive() {
         return false;
     }
@@ -160,6 +184,11 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
     @Override
     public void onReminderSaved(String reminder) {
         mPresenter.populateReminder(reminder);
+    }
+
+    @Override
+    public void onDurationSaved(String duration) {
+        mPresenter.populateDuration(duration);
     }
 
     /** TODO create a Reminder.

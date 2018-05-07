@@ -61,6 +61,18 @@ public final class Task {
         this.mReminderCondition = reminderCondition;
     }
 
+    @Ignore
+    public Task (String title, String description, long modifyDate, long assignedDate,
+                 String reminderCondition, long duration, long timeSpent){
+        this.mTitle = title;
+        this.mDescription = description;
+        this.modifyDate = modifyDate;
+        this.mAssignedDate = assignedDate;
+        this.mReminderCondition = reminderCondition;
+        this.mDuration = duration;
+        this.mTimeSpent = timeSpent;
+    }
+
     public long getId() {
         return mId;
     }
@@ -81,7 +93,17 @@ public final class Task {
         return mAssignedDate;
     }
 
-    public String getReminderCondition() {return mReminderCondition;}
+    public long getDuration() {
+        return  mDuration;
+    }
+
+    public String getReminderCondition() {
+        return mReminderCondition;
+    }
+
+    public long getTimeSpent() {
+        return mTimeSpent;
+    }
 
     //--------------------
     public void setId(long id) {
@@ -96,6 +118,16 @@ public final class Task {
         this.mDescription = description;
     }
 
-    public void setReminderCondition(String condition){ this.mReminderCondition = condition;}
+    public void setReminderCondition(String condition){
+        this.mReminderCondition = condition;
+    }
+
+    public void setDuration(long duration) {
+        this.mDuration = duration;
+    }
+
+    public void setTimeSpent(long timeSpent){
+        this.mTimeSpent = timeSpent;
+    }
 
 }

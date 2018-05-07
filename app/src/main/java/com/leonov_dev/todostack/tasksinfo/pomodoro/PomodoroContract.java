@@ -8,13 +8,22 @@ public interface PomodoroContract {
 
     interface View extends BaseView<Presenter> {
 
-        void setTimer();
+        void setTimer(long timer);
+
+        void setButtonCation(String caption);
+
+        void setTitle(String title);
+
+        void showTask();
+
     }
 
 
     interface Presenter extends BasePresenter<View> {
 
-        void startTimer();
+        void manageStartStopButton(String currentCaption);
+
+        void finishTask();
 
     }
 

@@ -43,4 +43,7 @@ dependencies {
 
 
     implementation 'org.jetbrains:annotations-java5:15.0'
+
+    //External lib
+    implementation 'com.shawnlin:number-picker:2.4.6'
 }

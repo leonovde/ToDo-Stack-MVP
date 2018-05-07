@@ -22,17 +22,22 @@ public interface TasksEditorContract {
 
         void setReminder(String time);
 
+        void setDuration(String duration);
+
         boolean isActive();
 
     }
 
     interface Presenter extends BasePresenter<View>{
 
-        void insertTask(String title, String description, @Nullable String Reminder);
+        void insertTask(String title, String description, @Nullable String reminder,
+                        @Nullable String duration);
 
         void populateTask();
 
         void populateReminder(String reminder);
+
+        void populateDuration(String duration);
 
         boolean isDataMissing();
 

@@ -20,6 +20,6 @@
         android:layout_weight="1"
         android:textAlignment="textEnd"
         android:layout_gravity="end"
-        android:text="Salam"/>
+        android:text="@string/reminder_caption"/>
 
 </LinearLayout>

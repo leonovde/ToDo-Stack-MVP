@@ -30,11 +30,13 @@ public interface TaskDao {
     @Update
     int updateTask(Task task);
 
+    @Query("UPDATE Tasks SET task_time_spent = :timeSpent WHERE task_id = :id")
+    void updateTimeSpentById(long id, long timeSpent);
+
     //-----------------Deletes----------------------
     @Delete
     void deleteTask(Task task);
 
     @Query("DELETE FROM Tasks WHERE task_id = :id")
     void deleteTaskById(long id);
-
 }

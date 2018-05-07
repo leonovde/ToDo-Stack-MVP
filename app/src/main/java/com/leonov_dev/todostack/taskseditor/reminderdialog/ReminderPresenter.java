@@ -102,7 +102,7 @@ public class ReminderPresenter implements ReminderDialogContract.Presenter {
 
         String fullDateString = date + " " + time;
         Date pickedDateTime = null;
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        SimpleDateFormat formatter = CalendarUtils.getFormatForDateAndTime();
         try {
             pickedDateTime = formatter.parse(fullDateString);
         }catch (Exception e){

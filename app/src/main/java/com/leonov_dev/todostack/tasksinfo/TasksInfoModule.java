@@ -1,5 +1,6 @@
 package com.leonov_dev.todostack.tasksinfo;
 
+
 import com.leonov_dev.todostack.di.ActivityScoped;
 
 import dagger.Binds;
@@ -17,7 +18,8 @@ public abstract class TasksInfoModule {
     @Provides
     @ActivityScoped
     static long provideTaskId(TasksInfoActivity tasksInfoActivity){
-        return tasksInfoActivity.getIntent().getExtras().getLong(tasksInfoActivity.TASK_ID_KEY);
+//        return tasksInfoActivity.getIntent().getExtras().getLong(tasksInfoActivity.TASK_ID_KEY);
+        return tasksInfoActivity.getIntent().getLongExtra(tasksInfoActivity.TASK_ID_KEY, -1);
     }
 
 }

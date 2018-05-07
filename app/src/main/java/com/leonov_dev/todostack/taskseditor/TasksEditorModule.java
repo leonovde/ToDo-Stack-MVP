@@ -5,6 +5,9 @@ import android.support.annotation.Nullable;
 
 import com.leonov_dev.todostack.di.ActivityScoped;
 import com.leonov_dev.todostack.di.FragmentScoped;
+import com.leonov_dev.todostack.taskseditor.durationdialog.DurationContract;
+import com.leonov_dev.todostack.taskseditor.durationdialog.DurationFragment;
+import com.leonov_dev.todostack.taskseditor.durationdialog.DurationPresenter;
 import com.leonov_dev.todostack.taskseditor.reminderdialog.ReminderDialogContract;
 import com.leonov_dev.todostack.taskseditor.reminderdialog.ReminderFragment;
 import com.leonov_dev.todostack.taskseditor.reminderdialog.ReminderPresenter;
@@ -41,4 +44,14 @@ public abstract class TasksEditorModule {
 //    @FragmentScoped
 //    @ContributesAndroidInjector
 //    abstract ReminderFragment.TimerReminderFragment provideTimerReminderFragment();
+
+    //Duration Dialog Module
+    @FragmentScoped
+    @ContributesAndroidInjector
+    abstract DurationFragment prodvideDurationFragment();
+
+    @ActivityScoped
+    @Binds
+    abstract DurationContract.Presenter providesDurationPresenter
+            (DurationPresenter durationPresenter);
 }

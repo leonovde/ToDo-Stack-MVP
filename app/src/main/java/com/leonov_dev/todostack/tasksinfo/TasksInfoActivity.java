@@ -139,7 +139,6 @@ public class TasksInfoActivity extends DaggerAppCompatActivity implements TasksI
     @Override
     public void showTitle(String title) {
         mTitleTextView.setText(title);
-        Log.e(LOG_TAG, "show title Triggered, title:" + title);
     }
 
     @Override

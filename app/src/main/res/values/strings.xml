@@ -35,5 +35,10 @@
     <string name="productive_fragment_name">Productivity</string>
     <string name="unproductive_fragment_name">Apps Usage</string>
     <string name="start_the_pomodoro">START</string>
-    <string name="stop_the_pomidiro">STOP</string>
+    <string name="stop_the_pomodoro">STOP</string>
+    <string name="reminder_caption">Set Trigger</string>
+    <string name="duration_default_value">0:00</string>
+
+    <!-- Formatter -->
+
 </resources>

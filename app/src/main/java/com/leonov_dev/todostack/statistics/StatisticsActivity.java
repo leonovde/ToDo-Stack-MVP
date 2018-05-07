@@ -74,33 +74,6 @@ public class StatisticsActivity extends DaggerAppCompatActivity implements
         return super.onOptionsItemSelected(item);
     }
 
-    private void setupDrawerContent(NavigationView navigationView) {
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-
-                        int id = menuItem.getItemId();
-                        switch (id){
-                            case R.id.drawer_todo:
-                                Intent intent = new Intent(StatisticsActivity.this, TasksActivity.class);
-                                startActivity(intent);
-                                break;
-                            case R.id.drawer_statistics:
-                                break;
-                            default:
-                                break;
-                        }
-
-                        menuItem.setChecked(true);
-                        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-                        drawer.closeDrawer(GravityCompat.START);
-                        return true;
-                    }
-                });
-    }
-
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();

@@ -1,5 +1,6 @@
 package com.leonov_dev.todostack.utils;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class CalendarUtils {
@@ -35,6 +36,18 @@ public class CalendarUtils {
         calendar.clear(Calendar.SECOND);
         calendar.clear(Calendar.MILLISECOND);
         return calendar.getTimeInMillis();
+    }
+
+    public static SimpleDateFormat getFormatForTime(){
+        return new SimpleDateFormat();
+    }
+
+    public static SimpleDateFormat getFormatForDate(){
+        return new SimpleDateFormat();
+    }
+
+    public static SimpleDateFormat getFormatForDateAndTime(){
+        return new SimpleDateFormat("yyyy/MM/dd HH:mm");
     }
 
 }
