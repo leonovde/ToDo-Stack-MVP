@@ -25,6 +25,8 @@ public interface PomodoroContract {
 
         void finishTask();
 
+        //TODO decrease duration by the end of the round.
+
     }
 
 }

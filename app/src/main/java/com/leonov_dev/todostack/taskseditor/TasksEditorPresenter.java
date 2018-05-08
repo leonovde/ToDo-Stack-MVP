@@ -9,11 +9,13 @@ import com.leonov_dev.todostack.data.Task;
 import com.leonov_dev.todostack.data.TaskDataSoruce;
 import com.leonov_dev.todostack.data.TasksRepository;
 import com.leonov_dev.todostack.di.ActivityScoped;
+import com.leonov_dev.todostack.utils.CalendarUtils;
 import com.leonov_dev.todostack.utils.DateConverter;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.concurrent.Executors;
 
 import android.support.annotation.Nullable;
 import javax.inject.Inject;
@@ -56,34 +58,30 @@ public class TasksEditorPresenter implements TasksEditorContract.Presenter {
             long dateTime = getDateTime();
 
             //If condition received is same as default then insert null;
+            SimpleDateFormat formatter = CalendarUtils.getFormatForDateAndTime();
             String reminderCondition = mContext.getString(R.string.reminder_caption);
+            Log.e(LOG_TAG, "Reminder Value Is " + reminder);
             if (reminderCondition.equals(reminder)){
                 reminderCondition = null;
             } else {
                 //TODO add date time formatter and format yyyy/MM/dd HH:mm
+                //Change  Reminder field type into long
                 reminderCondition = reminder;
             }
-
             //If the duration is 0:00 or 0:0 then insert 0 for the duration
+            formatter = CalendarUtils.getFormatForTime();
             long durationTimer = 0;
-            if (mContext.getString(R.string.duration_default_value).equals(duration) ||
-                    "0:0".equals(duration) || "00:00".equals(duration)){
+            Log.e(LOG_TAG, "Duration value is " + duration);
+            try {
+                durationTimer = formatter.parse(duration).getTime();
+                Log.e(LOG_TAG, "Duration after formatting " + durationTimer);
+            } catch (Exception e){
                 durationTimer = 0;
-            } else {
-                //TODO add date time formatter and format HH:mm
-                durationTimer = 0;
+                Log.e(LOG_TAG, "Error parsing duration");
             }
-
             //New task wasn't executed
             long timeSpent = 0;
 
-//            public long modifyDate;
-//            public long mAssignedDate;
-//            public String mReminderCondition;
-//            public long mDuration;
-//            public long mTimeSpent;
-
-//            Task task = new Task(title, description, dateTime, dateTime);
             Task task = new Task(title, description, dateTime, dateTime,
                     reminderCondition, durationTimer, timeSpent);
             if (mTaskId == -1){
@@ -154,6 +152,7 @@ public class TasksEditorPresenter implements TasksEditorContract.Presenter {
     public void fillToDo(Task task){
         mTasksEditorView.setTitle(task.getTitle());
         mTasksEditorView.setDescription(task.getDescription());
+
 
     }
 

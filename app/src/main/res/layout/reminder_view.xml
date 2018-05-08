@@ -1,4 +1,4 @@
-<LinearLayout
+<RelativeLayout
     android:id="@+id/reminder_linear_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -10,16 +10,21 @@
         android:id="@+id/reminder_image"
         android:layout_width="@dimen/activity_inner_icon"
         android:layout_height="@dimen/activity_inner_icon"
-        android:layout_weight="0"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
         android:src="@drawable/ic_reminder_24dp"/>
 
     <TextView
         android:id="@+id/reminder_condition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:textAlignment="textEnd"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
         android:layout_gravity="end"
+        android:gravity="end"
         android:text="@string/reminder_caption"/>
 
-</LinearLayout>
+</RelativeLayout>

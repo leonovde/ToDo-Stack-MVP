@@ -22,6 +22,10 @@ public interface TasksInfoContract {
         void showDescription(String desc);
 
         void showReminder(String time);
+
+        void hideReminder();
+
+        void showDuration(String duration, String leftOrSpent);
     }
 
 

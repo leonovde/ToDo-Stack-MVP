@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.leonov_dev.todostack.R;
@@ -26,8 +27,11 @@ public class TasksInfoActivity extends DaggerAppCompatActivity implements TasksI
 
     private TextView mTitleTextView;
     private TextView mDescriptionTextView;
-    private LinearLayout mReminderLinearLayout;
+    private RelativeLayout mReminderRelativeLayout;
     private TextView mReminderTextView;
+    private RelativeLayout mDurationRelativeLayout;
+    private TextView mDurationLeftSpentTextView;
+    private TextView mDurationTextView;
 
     private FloatingActionButton mFab;
 
@@ -50,11 +54,15 @@ public class TasksInfoActivity extends DaggerAppCompatActivity implements TasksI
 
         mTitleTextView = findViewById(R.id.task_title_text_view);
         mDescriptionTextView = findViewById(R.id.task_description_text_view);
-        mReminderLinearLayout = findViewById(R.id.reminder_linear_layout);
+        mReminderRelativeLayout = findViewById(R.id.reminder_linear_layout);
         mReminderTextView = findViewById(R.id.reminder_condition);
+        mDurationRelativeLayout = findViewById(R.id.duration_linear_layout);
+        mDurationLeftSpentTextView = findViewById(R.id.duration_left_spent_text_view);
+        mDurationTextView = findViewById(R.id.duration_text_view);
         mFab = findViewById(R.id.start_pomodoro_fab);
 
-        mReminderLinearLayout.setVisibility(View.GONE);
+        mReminderRelativeLayout.setVisibility(View.GONE);
+        mDurationRelativeLayout.setVisibility(View.GONE);
 
         // Set up the toolbar.
         mActionBar = getSupportActionBar();
@@ -148,8 +156,20 @@ public class TasksInfoActivity extends DaggerAppCompatActivity implements TasksI
 
     @Override
     public void showReminder(String time) {
-        mReminderLinearLayout.setVisibility(View.VISIBLE);
+        mReminderRelativeLayout.setVisibility(View.VISIBLE);
         mReminderTextView.setText(time);
+    }
+
+    @Override
+    public void hideReminder() {
+        mReminderRelativeLayout.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showDuration(String duration, String leftOrSpent) {
+        mDurationRelativeLayout.setVisibility(View.VISIBLE);
+        mDurationLeftSpentTextView.setText(leftOrSpent);
+        mDurationTextView.setText(duration);
     }
 
     @Override

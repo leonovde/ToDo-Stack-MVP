@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,9 +52,10 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
 
     private EditText mTitleEditText;
     private EditText mDescriptionText;
-    private LinearLayout mReminderLinearLayout;
+    private RelativeLayout mReminderRelativeLayout;
     private TextView mReminderTextView;
-    private LinearLayout mDurationLinearLayout;
+    private RelativeLayout mDurationRelativeLayout;
+    private TextView mDurationLeftSpentTextView;
     private TextView mDurationTextView;
 
     private ActionBar mActionBar;
@@ -73,13 +75,16 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
         mTitleEditText = findViewById(R.id.add_task_title);
         mDescriptionText = findViewById(R.id.add_task_description);
 
-        mReminderLinearLayout = findViewById(R.id.reminder_linear_layout);
+        mReminderRelativeLayout = findViewById(R.id.reminder_linear_layout);
         mReminderTextView = findViewById(R.id.reminder_condition);
 
-        mDurationLinearLayout = findViewById(R.id.duration_linear_layout);
+        mDurationRelativeLayout = findViewById(R.id.duration_linear_layout);
+        mDurationLeftSpentTextView = findViewById(R.id.duration_left_spent_text_view);
         mDurationTextView = findViewById(R.id.duration_text_view);
 
-        mReminderLinearLayout.setOnClickListener(new View.OnClickListener() {
+        mDurationLeftSpentTextView.setVisibility(View.GONE);
+
+        mReminderRelativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DialogFragment newFragment = mReminderFragment.get();
@@ -87,7 +92,7 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
             }
         });
 
-        mDurationLinearLayout.setOnClickListener(new View.OnClickListener() {
+        mDurationRelativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DialogFragment newFragment = mDurationFragment.get();
