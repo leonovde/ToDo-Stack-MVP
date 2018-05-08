@@ -1,6 +1,7 @@
 package com.leonov_dev.todostack.taskseditor.reminderdialog;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
 
 import com.leonov_dev.todostack.R;
@@ -20,6 +21,8 @@ public class ReminderPresenter implements ReminderDialogContract.Presenter {
     private final String LOG_TAG = ReminderPresenter.class.getSimpleName();
 
     private Context mContext;
+
+    private Bundle mExtras;
 
     @Inject
     ReminderPresenter(Context context){
@@ -87,6 +90,44 @@ public class ReminderPresenter implements ReminderDialogContract.Presenter {
     @Override
     public void deleteReminder() {
         mView.closeDialogAndDeleteTime(mContext.getString(R.string.reminder_caption));
+    }
+
+    @Override
+    public void takeView(ReminderDialogContract.View view, Bundle extras) {
+        mView = view;
+        mExtras = extras;
+        if (!mExtras.isEmpty() && mExtras != null) {
+            populateReminder(extras);
+        }
+    }
+
+    private void populateReminder(Bundle extras){
+        String reminderCondition = extras.getString(ReminderFragment.REMINDER_KEY);
+
+        if (isDateReminder(reminderCondition)){
+            //Set up date and time
+            String[] dateAndTime = reminderCondition.split(" ");
+            if (dateAndTime.length == 2) {
+                mView.showDateTimePicker();
+                mView.setDate(dateAndTime[0]);
+                mView.setTime(dateAndTime[1]);
+            }
+        } else {
+            //TODO this show doesn't change  the radio button.
+            //It is a location so only 2 fields
+            mView.showLocationPicker();
+            mView.setLocation(reminderCondition);
+        }
+    }
+
+    private boolean isDateReminder(String date){
+        SimpleDateFormat formatter = CalendarUtils.getFormatForDateAndTime();
+        try {
+            Date formattedDate = formatter.parse(date);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     private void checkTimeValidityForResult(String date,

@@ -4,6 +4,7 @@ import com.leonov_dev.todostack.BasePresenter;
 import com.leonov_dev.todostack.BaseView;
 import com.leonov_dev.todostack.data.Task;
 
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 public interface TasksEditorContract {
@@ -24,7 +25,7 @@ public interface TasksEditorContract {
 
         void setDuration(String duration);
 
-        boolean isActive();
+        void showReminderDialog(Bundle extraData);
 
     }
 
@@ -38,6 +39,8 @@ public interface TasksEditorContract {
         void populateReminder(String reminder);
 
         void populateDuration(String duration);
+
+        void prepareReminderDialog(String reminderCondition);
 
         boolean isDataMissing();
 

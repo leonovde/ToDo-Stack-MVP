@@ -1,5 +1,7 @@
 package com.leonov_dev.todostack.taskseditor.reminderdialog;
 
+import android.os.Bundle;
+
 import com.leonov_dev.todostack.BasePresenter;
 import com.leonov_dev.todostack.BaseView;
 
@@ -14,6 +16,8 @@ public interface ReminderDialogContract {
         void setDate(String date);
 
         void setTime(String time);
+
+        void setLocation(String location);
 
         void showPickedTimeError();
 
@@ -42,6 +46,8 @@ public interface ReminderDialogContract {
         void checkTimeValidityAndClose(String date, String time, String standardDate, String standardTime);
 
         void deleteReminder();
+
+        void takeView(ReminderDialogContract.View view, Bundle extras);
 
     }
 }

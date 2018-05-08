@@ -87,8 +87,10 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
         mReminderRelativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment newFragment = mReminderFragment.get();
-                newFragment.show(getFragmentManager(), REMINDER_DIALOG_TAG);
+//                mPresenter.populateReminder(mReminderTextView.getText().toString());
+                mPresenter.prepareReminderDialog(mReminderTextView.getText().toString());
+//                DialogFragment newFragment = mReminderFragment.get();
+//                newFragment.show(getFragmentManager(), REMINDER_DIALOG_TAG);
             }
         });
 
@@ -175,8 +177,10 @@ public class TasksEditorActivity extends DaggerAppCompatActivity implements Task
     }
 
     @Override
-    public boolean isActive() {
-        return false;
+    public void showReminderDialog(Bundle extraData) {
+        DialogFragment newFragment = mReminderFragment.get();
+        newFragment.setArguments(extraData);
+        newFragment.show(getFragmentManager(), REMINDER_DIALOG_TAG);
     }
 
     @Override

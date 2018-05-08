@@ -42,6 +42,9 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
     @Inject
     ReminderDialogContract.Presenter mPresenter;
 
+    public static final String REMINDER_KEY = "reminder_key";
+
+
     @Inject
     public ReminderFragment(){
 
@@ -71,6 +74,8 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
     private static final String DATE_DIALOG = "DateDialog";
     private static final String TIME_DIALOG = "TimeDialog";
 
+    private Bundle extrasFromEditor;
+
 
     DatePickerListener mDatePickerListener = new DatePickerListener() {
 
@@ -93,6 +98,7 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View rootView = inflater.inflate(R.layout.fragment_reminder, null);
 
@@ -130,9 +136,7 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
             }
         });
 
-        /**
-         * Open Date Dialog On Click
-         */
+
         mDatePickerTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,9 +145,7 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
             }
         });
 
-        /**
-         * Open Time Dialog On Click
-         */
+
         mTimePickerTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -193,7 +195,7 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
             }
         });
 
-        mPresenter.takeView(this);
+        mPresenter.takeView(this, getArguments());
     }
 
     @Override
@@ -224,6 +226,11 @@ public class ReminderFragment extends DaggerDialogFragment implements ReminderDi
     public void setTime(String time) {
         mTimePickerError.setVisibility(View.GONE);
         mTimePickerTv.setText(time);
+    }
+
+    @Override
+    public void setLocation(String location) {
+        //do something with spinner
     }
 
     @Override

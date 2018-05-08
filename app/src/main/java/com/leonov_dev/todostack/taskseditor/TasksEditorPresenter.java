@@ -1,6 +1,7 @@
 package com.leonov_dev.todostack.taskseditor;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -9,10 +10,13 @@ import com.leonov_dev.todostack.data.Task;
 import com.leonov_dev.todostack.data.TaskDataSoruce;
 import com.leonov_dev.todostack.data.TasksRepository;
 import com.leonov_dev.todostack.di.ActivityScoped;
+import com.leonov_dev.todostack.taskseditor.reminderdialog.ReminderFragment;
 import com.leonov_dev.todostack.utils.CalendarUtils;
 import com.leonov_dev.todostack.utils.DateConverter;
 
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.Executors;
@@ -71,13 +75,10 @@ public class TasksEditorPresenter implements TasksEditorContract.Presenter {
             //If the duration is 0:00 or 0:0 then insert 0 for the duration
             formatter = CalendarUtils.getFormatForTime();
             long durationTimer = 0;
-            Log.e(LOG_TAG, "Duration value is " + duration);
             try {
                 durationTimer = formatter.parse(duration).getTime();
-                Log.e(LOG_TAG, "Duration after formatting " + durationTimer);
             } catch (Exception e){
                 durationTimer = 0;
-                Log.e(LOG_TAG, "Error parsing duration");
             }
             //New task wasn't executed
             long timeSpent = 0;
@@ -146,6 +147,15 @@ public class TasksEditorPresenter implements TasksEditorContract.Presenter {
     @Override
     public void populateDuration(String duration) {
         mTasksEditorView.setDuration(duration);
+    }
+
+    @Override
+    public void prepareReminderDialog(String reminderCondition) {
+        Bundle extras = new Bundle();
+        if (! reminderCondition.equals(mContext.getString(R.string.reminder_caption))){
+            extras.putString(ReminderFragment.REMINDER_KEY, reminderCondition);
+        }
+        mTasksEditorView.showReminderDialog(extras);
     }
 
     public void fillToDo(Task task){

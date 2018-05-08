@@ -1,6 +1,7 @@
 package com.leonov_dev.todostack.taskseditor;
 
 import android.app.TimePickerDialog;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.leonov_dev.todostack.di.ActivityScoped;
@@ -54,4 +55,5 @@ public abstract class TasksEditorModule {
     @Binds
     abstract DurationContract.Presenter providesDurationPresenter
             (DurationPresenter durationPresenter);
+
 }
