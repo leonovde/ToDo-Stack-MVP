@@ -107,7 +107,6 @@ public class TasksInfoActivity extends DaggerAppCompatActivity implements TasksI
             mPresenter.editTask();
             return true;
         } else if (id == R.id.action_delete_task){
-            Log.e(LOG_TAG, "Delete Button Triggered");
             mPresenter.deleteTask();
             return true;
         }

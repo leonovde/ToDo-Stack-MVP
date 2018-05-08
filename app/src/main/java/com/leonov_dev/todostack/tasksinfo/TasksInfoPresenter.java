@@ -95,7 +95,7 @@ public class TasksInfoPresenter implements TasksInfoContract.Presenter {
         mView.showDescription(task.mDescription);
 
         String reminder = task.getReminderCondition();
-        //TODO If caption isn't default then show ReminderCondition
+        //If caption isn't default then show ReminderCondition
         if (!mContext.getString(R.string.reminder_caption).equals(reminder) && reminder != null){
             mView.showReminder(reminder);
         } else {
@@ -121,10 +121,6 @@ public class TasksInfoPresenter implements TasksInfoContract.Presenter {
             durationValue = formatter.format(time);
             leftOrSpentCaption = mContext.getString(R.string.duration_spent_time);
         }
-        Log.e(LOG_TAG, "Duration is " + duration);
-        Log.e(LOG_TAG, "DurationValue is " + durationValue);
-        Log.e(LOG_TAG, "TimeSpent is " + timeSpent);
-        Log.e(LOG_TAG, "Time is " + time);
         mView.showDuration(durationValue, leftOrSpentCaption);
 
 
