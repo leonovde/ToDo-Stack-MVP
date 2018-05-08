@@ -122,7 +122,5 @@ public class TasksInfoPresenter implements TasksInfoContract.Presenter {
             leftOrSpentCaption = mContext.getString(R.string.duration_spent_time);
         }
         mView.showDuration(durationValue, leftOrSpentCaption);
-
-
     }
 }

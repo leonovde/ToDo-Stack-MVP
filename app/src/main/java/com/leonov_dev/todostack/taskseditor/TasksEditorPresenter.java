@@ -12,9 +12,9 @@ import com.leonov_dev.todostack.di.ActivityScoped;
 import com.leonov_dev.todostack.utils.CalendarUtils;
 import com.leonov_dev.todostack.utils.DateConverter;
 
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.concurrent.Executors;
 
 import android.support.annotation.Nullable;
@@ -136,7 +136,6 @@ public class TasksEditorPresenter implements TasksEditorContract.Presenter {
 
             }
         });
-
     }
 
     @Override
@@ -153,7 +152,19 @@ public class TasksEditorPresenter implements TasksEditorContract.Presenter {
         mTasksEditorView.setTitle(task.getTitle());
         mTasksEditorView.setDescription(task.getDescription());
 
+        String reminder = task.getReminderCondition();
+        //If caption isn't default then show ReminderCondition else, leave it same
+        if (!mContext.getString(R.string.reminder_caption).equals(reminder) && reminder != null){
+            mTasksEditorView.setReminder(reminder);
+        }
 
+        long duration = task.getDuration();
+        SimpleDateFormat formatter = CalendarUtils.getFormatForTime();
+        if (duration > 0){
+            Date time = new java.util.Date(duration);
+            String durationValue = formatter.format(time);
+            mTasksEditorView.setDuration(durationValue);
+        }
     }
 
     @Override
