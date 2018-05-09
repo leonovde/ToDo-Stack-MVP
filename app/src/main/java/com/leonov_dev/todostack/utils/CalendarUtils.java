@@ -1,7 +1,11 @@
 package com.leonov_dev.todostack.utils;
 
+import android.content.Context;
+import android.content.Intent;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class CalendarUtils {
 
@@ -50,4 +54,14 @@ public class CalendarUtils {
         return new SimpleDateFormat("yyyy/MM/dd HH:mm");
     }
 
+    public static void SetAlarm (Date date, Context context){
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.setTime(date);
+//
+//        Intent intent = new Intent(context, ClassThatWillHandleThisShit.class);
+//        PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(), req1, intent, 0);
+//        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+//        alarmManager.set(AlarmManager.RTC_WAKEUP, target.getTimeInMillis(), pendingIntent);
+
+    }
 }

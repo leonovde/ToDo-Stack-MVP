@@ -1,5 +1,6 @@
 package com.leonov_dev.todostack.utils;
 
+import android.app.usage.UsageStats;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -35,5 +36,9 @@ public class DeviceInfoUtils {
 
         }
         return true;
+    }
+
+    public static void usageInfo(){
+//        UsageStats usageStats = new UsageStats();
     }
 }

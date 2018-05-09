@@ -160,8 +160,6 @@ public class ReminderPresenter implements ReminderDialogContract.Presenter {
         }
 
         Date currentDateTime = new Date(CalendarUtils.getCurrentTime());
-        Log.e(LOG_TAG, "Current time " + currentDateTime.toString());
-        Log.e(LOG_TAG, "Picked time " + pickedDateTime.toString());
         if (pickedDateTime.before(currentDateTime)){
             mView.showPickedTimeError();
         } else {

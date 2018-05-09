@@ -16,12 +16,21 @@ public interface PomodoroContract {
 
         void showTask();
 
+        void startTheTask();
+
+        void startTheBreak();
+
+        void stopTheTask();
+
+
     }
 
 
     interface Presenter extends BasePresenter<View> {
 
         void manageStartStopButton(String currentCaption);
+
+        void updateTimeSpent();
 
         void finishTask();
 
