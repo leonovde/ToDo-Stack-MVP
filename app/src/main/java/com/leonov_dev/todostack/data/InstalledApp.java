@@ -1,19 +1,21 @@
 package com.leonov_dev.todostack.data;
 
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
 
-public class InstalledApp {
+public class InstalledApp implements Comparable<InstalledApp> {
 
     private String name;
-
     private Drawable icon;
-
     private String usage;
+    private long usageLong;
 
-    public InstalledApp (String name, Drawable icon, String usage){
+
+    public InstalledApp (String name, Drawable icon, String usage, long usageLong){
         this.name = name;
         this.icon = icon;
         this.usage = usage;
+        this.usageLong = usageLong;
     }
 
     public InstalledApp (String name, Drawable icon){
@@ -43,5 +45,18 @@ public class InstalledApp {
 
     public void setUsage(String usage) {
         this.usage = usage;
+    }
+
+    public long getUsageLong(){
+        return usageLong;
+    }
+
+    public void setUsageLong(long usageLong){
+        this.usageLong = usageLong;
+    }
+
+    @Override
+    public int compareTo(@NonNull InstalledApp app) {
+        return (int)(app.usageLong - this.usageLong);
     }
 }

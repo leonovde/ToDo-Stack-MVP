@@ -30,7 +30,7 @@ public class DeviceInfoUtils {
             if (isNotSystemPackage(pack)){
                 Drawable icon = pack.applicationInfo.loadIcon(packageManager);
                 String appName = pack.applicationInfo.loadLabel(packageManager).toString();
-                installedApps.add(new InstalledApp(appName, icon, "No Data"));
+                installedApps.add(new InstalledApp(appName, icon, "No Data", 0));
             }
         }
         return installedApps;

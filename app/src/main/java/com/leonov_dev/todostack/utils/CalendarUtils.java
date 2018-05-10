@@ -42,6 +42,10 @@ public class CalendarUtils {
         return calendar.getTimeInMillis();
     }
 
+    public static SimpleDateFormat getFormatForTimeWithSeconds(){
+        return new SimpleDateFormat("HH:mm:ss");
+    }
+
     public static SimpleDateFormat getFormatForTime(){
         return new SimpleDateFormat("HH:mm");
     }
@@ -53,6 +57,8 @@ public class CalendarUtils {
     public static SimpleDateFormat getFormatForDateAndTime(){
         return new SimpleDateFormat("yyyy/MM/dd HH:mm");
     }
+
+
 
     public static void SetAlarm (Date date, Context context){
 //        Calendar calendar = Calendar.getInstance();

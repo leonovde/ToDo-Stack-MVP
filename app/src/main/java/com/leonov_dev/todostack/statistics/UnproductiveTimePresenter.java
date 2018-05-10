@@ -18,6 +18,7 @@ import com.leonov_dev.todostack.utils.DeviceInfoUtils;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -87,7 +88,7 @@ public class UnproductiveTimePresenter implements UnproductiveTimeContract.Prese
                     String appName = pInfo.applicationInfo.loadLabel(mPackageManager).toString();
                     Drawable appIcon = pInfo.applicationInfo.loadIcon(mPackageManager);
                     InstalledApp currentApp = new InstalledApp(appName, appIcon,
-                            mContext.getString(R.string.duration_default_value));
+                            mContext.getString(R.string.duration_default_value), 0);
                     appUsageMap.put(packageName, currentApp);
                 }
 
@@ -102,14 +103,16 @@ public class UnproductiveTimePresenter implements UnproductiveTimeContract.Prese
                          * get the usage duration, concert with time stamp and put back in map
                          */
                         InstalledApp bufApp = appUsageMap.get(packageName);
-                        time = new Date(usageStat.getTotalTimeInForeground());
+                        bufApp.setUsageLong(usageStat.getTotalTimeInForeground());
+                        time = new Date(bufApp.getUsageLong());
                         bufApp.setUsage(formatter.format(time));
                         appUsageMap.put(packageName, bufApp);
                     }
                 }
 
-                //TODO sort by time
-                mView.showListOfApps(new ArrayList(appUsageMap.values()));
+                List<InstalledApp> listOfApps = new ArrayList(appUsageMap.values());
+                Collections.sort(listOfApps);
+                mView.showListOfApps(listOfApps);
             }
         }
     }
