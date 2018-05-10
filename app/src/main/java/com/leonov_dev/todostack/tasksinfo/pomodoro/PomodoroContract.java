@@ -22,7 +22,6 @@ public interface PomodoroContract {
 
         void stopTheTask();
 
-
     }
 
 

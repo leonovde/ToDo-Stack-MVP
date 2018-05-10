@@ -8,6 +8,14 @@ public class InstalledApp {
 
     private Drawable icon;
 
+    private String usage;
+
+    public InstalledApp (String name, Drawable icon, String usage){
+        this.name = name;
+        this.icon = icon;
+        this.usage = usage;
+    }
+
     public InstalledApp (String name, Drawable icon){
         this.name = name;
         this.icon = icon;
@@ -27,5 +35,13 @@ public class InstalledApp {
 
     public void setIcon(Drawable icon) {
         this.icon = icon;
+    }
+
+    public String getUsage() {
+        return usage;
+    }
+
+    public void setUsage(String usage) {
+        this.usage = usage;
     }
 }

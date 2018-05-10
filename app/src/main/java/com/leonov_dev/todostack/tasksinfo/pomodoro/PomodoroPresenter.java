@@ -94,6 +94,11 @@ public class PomodoroPresenter implements PomodoroContract.Presenter {
     }
 
     @Override
+    public void updateTimeSpent() {
+
+    }
+
+    @Override
     public void finishTask() {
 
     }

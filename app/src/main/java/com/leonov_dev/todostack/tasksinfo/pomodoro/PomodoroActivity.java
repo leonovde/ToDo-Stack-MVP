@@ -86,6 +86,21 @@ public class PomodoroActivity extends DaggerAppCompatActivity implements Pomodor
         finish();
     }
 
+    @Override
+    public void startTheTask() {
+
+    }
+
+    @Override
+    public void startTheBreak() {
+
+    }
+
+    @Override
+    public void stopTheTask() {
+
+    }
+
 
     public class TaskCountDownTimer extends CountDownTimer {
 

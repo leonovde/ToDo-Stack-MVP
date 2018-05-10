@@ -12,11 +12,15 @@ public interface UnproductiveTimeContract {
 
         void showListOfApps(List<InstalledApp> installedApps);
 
+        void showPermissionError();
+
+
     }
 
     interface Presenter extends BasePresenter<View> {
 
         void loadApps();
+
 
     }
 

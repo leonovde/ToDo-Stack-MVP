@@ -1,11 +1,27 @@
 package com.leonov_dev.todostack.statistics;
 
+import android.app.usage.UsageStats;
+import android.content.Context;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.leonov_dev.todostack.R;
+import com.leonov_dev.todostack.data.InstalledApp;
 import com.leonov_dev.todostack.data.TasksRepository;
+import com.leonov_dev.todostack.utils.CalendarUtils;
 import com.leonov_dev.todostack.utils.DeviceInfoUtils;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
@@ -15,15 +31,19 @@ public class UnproductiveTimePresenter implements UnproductiveTimeContract.Prese
 
     private final PackageManager mPackageManager;
 
+    private final Context mContext;
+
     private final String LOG_TAG = UnproductiveTimeContract.class.getSimpleName();
 
     @Nullable
     private UnproductiveTimeContract.View mView;
 
     @Inject
-    UnproductiveTimePresenter(TasksRepository tasksRepository, PackageManager packageManager) {
+    UnproductiveTimePresenter(TasksRepository tasksRepository, PackageManager packageManager,
+                              Context context) {
         mTasksRepository = tasksRepository;
         mPackageManager = packageManager;
+        mContext = context;
     }
 
     @Override
@@ -39,6 +59,58 @@ public class UnproductiveTimePresenter implements UnproductiveTimeContract.Prese
 
     @Override
     public void loadApps() {
-        mView.showListOfApps(DeviceInfoUtils.getInstalledApps(mPackageManager));
+        if (mView != null) {
+            //TODO add time interval value
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP){
+                //Show list of apps on phone
+                mView.showListOfApps(DeviceInfoUtils.getInstalledApps(mPackageManager));
+            } else {
+                //Get Usage Statistics
+                List<UsageStats> usageStats = DeviceInfoUtils.getUsageInfo(
+                        CalendarUtils.getStartOfTodayInMilliseconds(),
+                        CalendarUtils.getCurrentTime(),
+                        mContext);
+                //If statistic is empty, show Error message and proceed to Settings page
+                if (usageStats == null || usageStats.isEmpty() || usageStats.size() == 0){
+                    mView.showPermissionError();
+                    return;
+                }
+
+                List<PackageInfo> installedApps =
+                        DeviceInfoUtils.getInstalledAppsPackageInfo(mPackageManager);
+
+                HashMap<String, InstalledApp> appUsageMap = new HashMap<>();
+
+                //Filling all installed apps, time usage 0
+                for (PackageInfo pInfo : installedApps){
+                    String packageName = pInfo.packageName;
+                    String appName = pInfo.applicationInfo.loadLabel(mPackageManager).toString();
+                    Drawable appIcon = pInfo.applicationInfo.loadIcon(mPackageManager);
+                    InstalledApp currentApp = new InstalledApp(appName, appIcon,
+                            mContext.getString(R.string.duration_default_value));
+                    appUsageMap.put(packageName, currentApp);
+                }
+
+                //Depending on Filter:
+                SimpleDateFormat formatter = CalendarUtils.getFormatForTime();
+                Date time;
+                for (UsageStats usageStat : usageStats) {
+                        String packageName = usageStat.getPackageName();
+                    if (appUsageMap.containsKey(packageName)) {
+                        /**
+                         * If App that has data about duration is in list
+                         * get the usage duration, concert with time stamp and put back in map
+                         */
+                        InstalledApp bufApp = appUsageMap.get(packageName);
+                        time = new Date(usageStat.getTotalTimeInForeground());
+                        bufApp.setUsage(formatter.format(time));
+                        appUsageMap.put(packageName, bufApp);
+                    }
+                }
+
+                //TODO sort by time
+                mView.showListOfApps(new ArrayList(appUsageMap.values()));
+            }
+        }
     }
 }

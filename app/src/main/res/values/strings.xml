@@ -45,7 +45,9 @@
     <!-- Formatter -->
     <string name="hours_picker_formatter">%d h</string>
     <string name="minutes_picker_formatter">%d m</string>
-
+    <string name="permission_message">Please, give permission to the app to Gain access to App usage</string>
+    <string name="set_permission_caption">Set Permission</string>
+    <string name="time_spent_caption">Time spent:</string>
 
 
 </resources>
