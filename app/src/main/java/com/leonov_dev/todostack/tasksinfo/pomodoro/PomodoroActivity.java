@@ -105,22 +105,6 @@ public class PomodoroActivity extends DaggerAppCompatActivity implements Pomodor
         mCountDownView.start(mProgressBar.getMax());
     }
 
-//    @Override
-//    public void startTheTask(long time) {
-//        mProgressBar.setMax((int) time);
-//        mProgressBar.setProgress((int) time);
-//        mTaskCountDownTimer.start();
-//        mCountDownView.start(mProgressBar.getMax());
-//    }
-//
-//    @Override
-//    public void startTheBreak(long time) {
-//        mProgressBar.setMax((int) time);
-//        mProgressBar.setProgress((int) time);
-//        mTaskCountDownTimer.start();
-//        mCountDownView.start(mProgressBar.getMax());
-//    }
-
     @Override
     public void stopTask() {
         mTaskCountDownTimer.cancel();
@@ -139,7 +123,6 @@ public class PomodoroActivity extends DaggerAppCompatActivity implements Pomodor
         @Override
         public void onTick(long millisUntilFinished) {
             int mintMills = (int) millisUntilFinished;
-            Log.e(LOG_TAG, "Mills till finish " + mintMills);
             mProgressBar.setProgress(mintMills);
         }
 

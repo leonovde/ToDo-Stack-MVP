@@ -1,19 +1,15 @@
 package com.leonov_dev.todostack.tasksinfo.pomodoro;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.leonov_dev.todostack.R;
 import com.leonov_dev.todostack.data.Task;
 import com.leonov_dev.todostack.data.TaskDataSoruce;
 import com.leonov_dev.todostack.data.TasksRepository;
 import com.leonov_dev.todostack.di.ActivityScoped;
-import com.leonov_dev.todostack.utils.CalendarUtils;
 
 import org.jetbrains.annotations.Nullable;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.inject.Inject;
 
