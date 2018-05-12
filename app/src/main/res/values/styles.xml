@@ -22,10 +22,12 @@
 
     <!--TABS-->
     <style name="CategoryTab" parent="Widget.Design.TabLayout">
-        <item name="tabIndicatorColor">@android:color/white</item>
-        <item name="tabSelectedTextColor">@android:color/white</item>
+        <item name="tabSelectedTextColor">@color/grayNormal</item>
+        <item name="tabIndicatorColor">@color/colorAccent</item>
+        <item name="tabIndicatorHeight">@dimen/tab_indicator_height</item>
+        <item name="tabTextColor">@color/grayDark</item>
         <item name="tabTextAppearance">@style/CategoryTabTextAppearance</item>
-        <item name="tabBackground">@color/colorPrimary</item>
+        <item name="tabBackground">@color/graySuperLight</item>
     </style>
 
     <style name="CategoryTabTextAppearance" parent="TextAppearance.Design.Tab">

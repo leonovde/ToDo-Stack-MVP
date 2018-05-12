@@ -8,53 +8,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".tasksinfo.TasksInfoActivity">
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".taskseditor.TasksEditorActivity">
+        android:padding="@dimen/margin_small">
 
-        <LinearLayout
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="@dimen/activity_vertical_margin"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin">
+            android:layout_height="match_parent"
+            app:cardCornerRadius="@dimen/cardview_default_radius"
+            app:cardElevation="@dimen/cardview_elevation"
+            android:layout_margin="@dimen/margin_small">
 
-            <TextView
-                android:id="@+id/task_title_text_view"
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".taskseditor.TasksEditorActivity">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/task_title_hint"
-                android:maxLines="1"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin">
 
-            <TextView
-                android:id="@+id/task_description_text_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="top"
-                android:minHeight="@dimen/description_view_height_min"
-                android:maxHeight="@dimen/description_view_height_max"
-                android:hint="@string/task_description_hint" />
+                <TextView
+                    android:id="@+id/task_title_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/task_title_hint"
+                    android:maxLines="1"
+                    android:layout_marginBottom="@dimen/margin_med"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-            <include
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                layout="@layout/reminder_view"/>
+                <TextView
+                    android:id="@+id/task_description_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:minHeight="@dimen/description_view_height_min"
+                    android:maxHeight="@dimen/description_view_height_max"
+                    android:hint="@string/task_description_hint" />
 
-            <include
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                layout="@layout/duration_view"/>
+                <include
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    layout="@layout/reminder_view"/>
 
-        </LinearLayout>
+                <include
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    layout="@layout/duration_view"/>
+
+            </LinearLayout>
 
 
-    </ScrollView>
+        </ScrollView>
+
+    </android.support.v7.widget.CardView>
+
+    </RelativeLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/start_pomodoro_fab"

@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#54bfa4</color>
+    <color name="colorPrimaryDark">#26997b</color>
+    <color name="colorAccent">#af3131</color>
 
     <color name="gray">#F0F0F0</color>
+    <color name="white">#ffffff</color>
+
+    <color name="graySuperLight">#efefef</color>
+    <color name="grayNormal">#777777</color>
+    <color name="grayDark">#545454</color>
 
     <drawable name="touchFeedback">#CFD8DC</drawable>
 </resources>

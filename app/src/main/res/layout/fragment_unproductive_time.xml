@@ -11,7 +11,10 @@
     <ListView
         android:id="@+id/list_of_installed_apps"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:background="@color/graySuperLight"
+        android:divider="@null"
+        android:padding="@dimen/margin_small"/>
 
     <LinearLayout
         android:id="@+id/permission_error_linear_layout"
