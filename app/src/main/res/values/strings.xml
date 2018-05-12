@@ -48,6 +48,7 @@
     <string name="permission_message">Please, give permission to the app to Gain access to App usage</string>
     <string name="set_permission_caption">Set Permission</string>
     <string name="time_spent_caption">Time spent:</string>
+    <string name="start_the_rest_pomodoro">REST</string>
 
 
 </resources>

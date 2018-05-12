@@ -8,19 +8,17 @@ public interface PomodoroContract {
 
     interface View extends BaseView<Presenter> {
 
-        void setTimer(long timer);
-
         void setButtonCation(String caption);
 
         void setTitle(String title);
 
-        void showTask();
+        void showTaskInfo();
 
-        void startTheTask();
+        void startTask(long time);
 
-        void startTheBreak();
+        void startRest(long time);
 
-        void stopTheTask();
+        void stopTask();
 
     }
 
@@ -29,9 +27,9 @@ public interface PomodoroContract {
 
         void manageStartStopButton(String currentCaption);
 
-        void updateTimeSpent();
+        void updateProgress(int timeSpent);
 
-        void finishTask();
+        void finishTask(int timeSpent);
 
         //TODO decrease duration by the end of the round.
 
