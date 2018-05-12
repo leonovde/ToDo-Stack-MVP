@@ -82,6 +82,8 @@ public class TasksRepository implements TaskDataSoruce {
                     public void run() {
                         if (!tasks.isEmpty()){
                             callback.onTasksLoaded(tasks);
+                        } else {
+                            callback.onDataNotAvailable();
                         }
                     }
                 });

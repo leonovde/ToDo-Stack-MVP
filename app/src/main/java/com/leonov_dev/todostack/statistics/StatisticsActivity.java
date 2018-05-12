@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.leonov_dev.todostack.R;
@@ -31,6 +32,8 @@ public class StatisticsActivity extends DaggerAppCompatActivity implements
 
     private ViewPager mViewPagerMode;
     private TabLayout mTabLayout;
+
+    public int mStatisticsFilter = R.id.today_statistics_filter;
 
     private final String LOG_TAG = StatisticsActivity.class.getSimpleName();
 
@@ -64,33 +67,31 @@ public class StatisticsActivity extends DaggerAppCompatActivity implements
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.statistics_menu, menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                // Open the navigation drawer when the home icon is selected from the toolbar.
-                mDrawerLayout.openDrawer(GravityCompat.START);
-                return true;
-        }
+        mStatisticsFilter = item.getItemId();
+        item.setChecked(true);
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        switch (id) {
+        switch (id){
             case R.id.drawer_todo:
-                Intent intent = new Intent(this, TasksActivity.class);
-                startActivity(intent);
+                onBackPressed();
                 break;
             case R.id.drawer_statistics:
                 break;
             default:
                 break;
         }
-
-        item.setChecked(true);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 

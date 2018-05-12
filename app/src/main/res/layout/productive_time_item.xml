@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?android:listPreferredItemHeight"
+    android:background="@drawable/touch_feedback"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/list_item_padding"
+    android:paddingTop="@dimen/list_item_padding">
+
+    <TextView
+        android:id="@+id/productive_task_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:maxLength="30"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:layout_gravity="center_vertical"
+        android:text="Title"
+        />
+
+    <TextView
+        android:id="@+id/productive_task_time_spent"
+        android:layout_width="wrap_content"
+        android:layout_weight="0"
+        android:layout_gravity="center_vertical"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/list_item_padding"
+        android:text="00:00"/>
+
+</LinearLayout>

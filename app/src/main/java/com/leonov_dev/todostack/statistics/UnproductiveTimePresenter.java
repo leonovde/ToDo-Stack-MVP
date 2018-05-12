@@ -50,7 +50,7 @@ public class UnproductiveTimePresenter implements UnproductiveTimeContract.Prese
     @Override
     public void takeView(UnproductiveTimeContract.View view) {
         mView = view;
-        loadApps();
+        loadApps(R.id.today_statistics_filter);
     }
 
     @Override
@@ -59,16 +59,32 @@ public class UnproductiveTimePresenter implements UnproductiveTimeContract.Prese
     }
 
     @Override
-    public void loadApps() {
+    public void loadApps(int periodFilter) {
         if (mView != null) {
             //TODO add time interval value
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP){
                 //Show list of apps on phone
                 mView.showListOfApps(DeviceInfoUtils.getInstalledApps(mPackageManager));
             } else {
+
+                long startOfAppUsagePeriod;
+                switch (periodFilter){
+                    case R.id.today_statistics_filter:
+                        startOfAppUsagePeriod = CalendarUtils.getStartOfTodayInMilliseconds();
+                        break;
+                    case R.id.this_week_statistics_filter:
+                        startOfAppUsagePeriod = CalendarUtils.getStartOfWeekInMilliseconds();
+                        break;
+                    case R.id.this_month_statistics_filter:
+                        startOfAppUsagePeriod = CalendarUtils.getStartOfMonthInMilliseconds();
+                        break;
+                    default:
+                        startOfAppUsagePeriod = CalendarUtils.getStartOfTodayInMilliseconds();
+                }
+
                 //Get Usage Statistics
                 List<UsageStats> usageStats = DeviceInfoUtils.getUsageInfo(
-                        CalendarUtils.getStartOfTodayInMilliseconds(),
+                        startOfAppUsagePeriod,
                         CalendarUtils.getCurrentTime(),
                         mContext);
                 //If statistic is empty, show Error message and proceed to Settings page
@@ -116,4 +132,5 @@ public class UnproductiveTimePresenter implements UnproductiveTimeContract.Prese
             }
         }
     }
+
 }
