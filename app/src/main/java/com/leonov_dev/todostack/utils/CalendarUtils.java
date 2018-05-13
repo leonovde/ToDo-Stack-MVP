@@ -57,17 +57,5 @@ public class CalendarUtils {
     public static SimpleDateFormat getFormatForDateAndTime(){
         return new SimpleDateFormat("yyyy/MM/dd HH:mm");
     }
-
-
-
-    public static void SetAlarm (Date date, Context context){
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.setTime(date);
-//
-//        Intent intent = new Intent(context, ClassThatWillHandleThisShit.class);
-//        PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(), req1, intent, 0);
-//        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-//        alarmManager.set(AlarmManager.RTC_WAKEUP, target.getTimeInMillis(), pendingIntent);
-
-    }
+    
 }
