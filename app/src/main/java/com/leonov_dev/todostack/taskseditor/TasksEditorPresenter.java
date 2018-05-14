@@ -13,6 +13,7 @@ import com.leonov_dev.todostack.data.Task;
 import com.leonov_dev.todostack.data.TaskDataSoruce;
 import com.leonov_dev.todostack.data.TasksRepository;
 import com.leonov_dev.todostack.di.ActivityScoped;
+import com.leonov_dev.todostack.sync.TaskReceiever;
 import com.leonov_dev.todostack.sync.TaskReminderIntentService;
 import com.leonov_dev.todostack.sync.TasksReminder;
 import com.leonov_dev.todostack.taskseditor.reminderdialog.ReminderFragment;
@@ -103,8 +104,7 @@ public class TasksEditorPresenter implements TasksEditorContract.Presenter {
                 updateTask(task);
             }
 
-            //TODO delete below intent
-            Intent intent = new Intent(mContext, TaskReminderIntentService.class);
+            Intent intent = new Intent(mContext, TaskReceiever.class);
             intent.putExtra(mContext.getString(R.string.id_of_task_key), task.getId());
             intent.putExtra(mContext.getString(R.string.notification_task_title_key), task.getTitle());
             intent.setAction(TasksReminder.ACTION_SHOW_TASK);
@@ -115,9 +115,6 @@ public class TasksEditorPresenter implements TasksEditorContract.Presenter {
             Log.e(LOG_TAG, "current time" + CalendarUtils.getCurrentTime());
             Log.e(LOG_TAG, "assigned time" + task.getAssignedDate());
             alarmManager.set(AlarmManager.RTC_WAKEUP, task.getAssignedDate(), pendingIntent);
-//            mContext.startService(pendingIntent);
-
-//            mContext.startService(intent);
 
         } else {
             mTasksEditorView.showEmptyTaskError();
