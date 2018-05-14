@@ -57,5 +57,5 @@ public class CalendarUtils {
     public static SimpleDateFormat getFormatForDateAndTime(){
         return new SimpleDateFormat("yyyy/MM/dd HH:mm");
     }
-    
+
 }

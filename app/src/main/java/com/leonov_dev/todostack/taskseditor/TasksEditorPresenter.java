@@ -1,6 +1,9 @@
 package com.leonov_dev.todostack.taskseditor;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -10,6 +13,8 @@ import com.leonov_dev.todostack.data.Task;
 import com.leonov_dev.todostack.data.TaskDataSoruce;
 import com.leonov_dev.todostack.data.TasksRepository;
 import com.leonov_dev.todostack.di.ActivityScoped;
+import com.leonov_dev.todostack.sync.TaskReminderIntentService;
+import com.leonov_dev.todostack.sync.TasksReminder;
 import com.leonov_dev.todostack.taskseditor.reminderdialog.ReminderFragment;
 import com.leonov_dev.todostack.utils.CalendarUtils;
 import com.leonov_dev.todostack.utils.DateConverter;
@@ -60,16 +65,22 @@ public class TasksEditorPresenter implements TasksEditorContract.Presenter {
                 title = description.substring(0, lastIndexOfDescriptionForTitle);
             }
             long dateTime = getDateTime();
+            long assignedDateTime = 0;
 
             //If condition received is same as default then insert null;
             SimpleDateFormat formatter = CalendarUtils.getFormatForDateAndTime();
             String reminderCondition = mContext.getString(R.string.reminder_caption);
-            Log.e(LOG_TAG, "Reminder Value Is " + reminder);
+
             if (reminderCondition.equals(reminder)){
                 reminderCondition = null;
             } else {
                 //TODO add date time formatter and format yyyy/MM/dd HH:mm
                 //Change  Reminder field type into long
+                try {
+                    assignedDateTime = formatter.parse(reminder).getTime();
+                } catch (Exception e){
+
+                }
                 reminderCondition = reminder;
             }
             //If the duration is 0:00 or 0:0 then insert 0 for the duration
@@ -83,7 +94,7 @@ public class TasksEditorPresenter implements TasksEditorContract.Presenter {
             //New task wasn't executed
             long timeSpent = 0;
 
-            Task task = new Task(title, description, dateTime, dateTime,
+            Task task = new Task(title, description, dateTime, assignedDateTime,
                     reminderCondition, durationTimer, timeSpent);
             if (mTaskId == -1){
                 saveTask(task);
@@ -91,6 +102,23 @@ public class TasksEditorPresenter implements TasksEditorContract.Presenter {
                 task.setId(mTaskId);
                 updateTask(task);
             }
+
+            //TODO delete below intent
+            Intent intent = new Intent(mContext, TaskReminderIntentService.class);
+            intent.putExtra(mContext.getString(R.string.id_of_task_key), task.getId());
+            intent.putExtra(mContext.getString(R.string.notification_task_title_key), task.getTitle());
+            intent.setAction(TasksReminder.ACTION_SHOW_TASK);
+
+            PendingIntent pendingIntent = PendingIntent.getBroadcast
+                    (mContext, 456, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(mContext.ALARM_SERVICE);
+            Log.e(LOG_TAG, "current time" + CalendarUtils.getCurrentTime());
+            Log.e(LOG_TAG, "assigned time" + task.getAssignedDate());
+            alarmManager.set(AlarmManager.RTC_WAKEUP, task.getAssignedDate(), pendingIntent);
+//            mContext.startService(pendingIntent);
+
+//            mContext.startService(intent);
+
         } else {
             mTasksEditorView.showEmptyTaskError();
         }

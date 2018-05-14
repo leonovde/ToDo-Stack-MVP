@@ -53,6 +53,9 @@
     <string name="statistics_this_week_filter">This Week</string>
     <string name="statistics_this_month_filter">This Month</string>
     <string name="productive_time_no_tasks_executed">No tasks were executed for chosen period</string>
+    <string name="main_notification_channel_name">Primary</string>
+    <string name="notification_task_title_key">notification_title_key</string>
+    <string name="notification_title">Time for ToDo</string>
 
 
 </resources>

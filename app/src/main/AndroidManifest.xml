@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"
         tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:name=".ToDoApplication"
@@ -40,6 +41,14 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".tasksinfo.TasksInfoActivity" /></activity>
+
+        <service
+            android:name=".sync.TaskReminderIntentService"
+            android:exported="false"/>
+
+        <receiver android:name=".sync.TaskReceiever"
+            android:exported="false"/>
+
     </application>
 
 </manifest>

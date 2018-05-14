@@ -96,7 +96,7 @@ public class ProductiveTimeFragment extends dagger.android.support.DaggerFragmen
 
     @Override
     public void showNumberOfTasksPerformed(int numberOfTasks) {
-        mTasksCounterTextView.setText(numberOfTasks);
+        mTasksCounterTextView.setText("" + numberOfTasks);
     }
 
     @Override
