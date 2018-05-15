@@ -1,10 +1,8 @@
 package com.leonov_dev.todostack.data;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.leonov_dev.todostack.utils.AppExecutors;
-import com.leonov_dev.todostack.utils.CalendarUtils;
 
 import java.util.List;
 

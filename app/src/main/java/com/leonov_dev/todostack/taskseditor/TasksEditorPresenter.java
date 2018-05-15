@@ -74,6 +74,7 @@ public class TasksEditorPresenter implements TasksEditorContract.Presenter {
 
             if (reminderCondition.equals(reminder)){
                 reminderCondition = null;
+                assignedDateTime = dateTime;
             } else {
                 //TODO add date time formatter and format yyyy/MM/dd HH:mm
                 //Change  Reminder field type into long
@@ -112,8 +113,6 @@ public class TasksEditorPresenter implements TasksEditorContract.Presenter {
             PendingIntent pendingIntent = PendingIntent.getBroadcast
                     (mContext, 456, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(mContext.ALARM_SERVICE);
-            Log.e(LOG_TAG, "current time" + CalendarUtils.getCurrentTime());
-            Log.e(LOG_TAG, "assigned time" + task.getAssignedDate());
             alarmManager.set(AlarmManager.RTC_WAKEUP, task.getAssignedDate(), pendingIntent);
 
         } else {
