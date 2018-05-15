@@ -71,15 +71,16 @@ public class TasksEditorPresenter implements TasksEditorContract.Presenter {
             //If condition received is same as default then insert null;
             SimpleDateFormat formatter = CalendarUtils.getFormatForDateAndTime();
             String reminderCondition = mContext.getString(R.string.reminder_caption);
+            boolean isToRunReminder = false;
 
             if (reminderCondition.equals(reminder)){
                 reminderCondition = null;
                 assignedDateTime = dateTime;
             } else {
-                //TODO add date time formatter and format yyyy/MM/dd HH:mm
                 //Change  Reminder field type into long
                 try {
                     assignedDateTime = formatter.parse(reminder).getTime();
+                    isToRunReminder = true;
                 } catch (Exception e){
 
                 }
@@ -105,15 +106,17 @@ public class TasksEditorPresenter implements TasksEditorContract.Presenter {
                 updateTask(task);
             }
 
-            Intent intent = new Intent(mContext, TaskReceiever.class);
-            intent.putExtra(mContext.getString(R.string.id_of_task_key), task.getId());
-            intent.putExtra(mContext.getString(R.string.notification_task_title_key), task.getTitle());
-            intent.setAction(TasksReminder.ACTION_SHOW_TASK);
+            if (isToRunReminder) {
+                Intent intent = new Intent(mContext, TaskReceiever.class);
+                intent.putExtra(mContext.getString(R.string.id_of_task_key), task.getId());
+                intent.putExtra(mContext.getString(R.string.notification_task_title_key), task.getTitle());
+                intent.setAction(TasksReminder.ACTION_SHOW_TASK);
 
-            PendingIntent pendingIntent = PendingIntent.getBroadcast
-                    (mContext, 456, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(mContext.ALARM_SERVICE);
-            alarmManager.set(AlarmManager.RTC_WAKEUP, task.getAssignedDate(), pendingIntent);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast
+                        (mContext, 456, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(mContext.ALARM_SERVICE);
+                alarmManager.set(AlarmManager.RTC_WAKEUP, task.getAssignedDate(), pendingIntent);
+            }
 
         } else {
             mTasksEditorView.showEmptyTaskError();
