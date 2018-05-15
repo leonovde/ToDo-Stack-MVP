@@ -30,7 +30,6 @@ public class TasksRepository implements TaskDataSoruce {
 
     @Override
     public void getTasks(@NonNull final LoadTasksCallback callback) {
-        //TODO run a callback
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
