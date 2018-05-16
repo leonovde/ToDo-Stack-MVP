@@ -1,6 +1,7 @@
 package com.leonov_dev.todostack.taskseditor.durationdialog;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.leonov_dev.todostack.R;
 
@@ -8,6 +9,7 @@ import javax.inject.Inject;
 
 public class DurationPresenter implements DurationContract.Presenter {
 
+    private static final String LOG_TAG = DurationFragment.class.getSimpleName();
     private DurationContract.View mView;
 
     private Context mContext;
@@ -32,6 +34,8 @@ public class DurationPresenter implements DurationContract.Presenter {
     public void formatTime(String hours, String minutes) {
         String formHours;
         String formMins;
+        Log.e(LOG_TAG, "Hours value " + hours);
+        Log.e(LOG_TAG, "Minutes val " + minutes);
         if (hours.length() <= 1){
             formHours = "0" + hours;
         } else {

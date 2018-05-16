@@ -19,7 +19,7 @@ public interface TaskDao {
     @Query("SELECT * FROM tasks WHERE task_id = :taskId")
     Task getTaskById(long taskId);
 
-    @Query("SELECT * FROM tasks WHERE assigned_date > :from")
+    @Query("SELECT * FROM tasks WHERE assigned_date >= :from")
     List<Task> getTasksStartingFrom(long from);
 
     //-----------------Inserts----------------------
