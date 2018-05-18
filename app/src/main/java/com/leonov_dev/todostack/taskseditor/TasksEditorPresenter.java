@@ -56,14 +56,16 @@ public class TasksEditorPresenter implements TasksEditorContract.Presenter {
     @Override
     public void insertTask(String title, String description, @Nullable String reminder,
                            @Nullable String duration) {
-        if (!description.isEmpty()){
+        //Use trim description to save description same way it was
+        String trimmedDescription = description.trim();
+        if (!trimmedDescription.isEmpty()){
             if (title.isEmpty()){
-                //Title is empty so lets fill it with first 20 chars of description or its length
+                //Title is empty or filled with spaces so fill it with first 20 chars of description or its length
                 int lastIndexOfDescriptionForTitle = 19;
-                if (description.length() < 20){
-                    lastIndexOfDescriptionForTitle = description.length() - 1;
+                if (trimmedDescription.length() < 20){
+                    lastIndexOfDescriptionForTitle = trimmedDescription.length() - 1;
                 }
-                title = description.substring(0, lastIndexOfDescriptionForTitle);
+                title = trimmedDescription.substring(0, lastIndexOfDescriptionForTitle);
             }
             long dateTime = getDateTime();
             long assignedDateTime = 0;
@@ -144,8 +146,6 @@ public class TasksEditorPresenter implements TasksEditorContract.Presenter {
 
     private long getDateTime(){
         Calendar calendar = Calendar.getInstance();
-//        SimpleDateFormat mdformat = new SimpleDateFormat("yyyy / MM / dd ");
-//        String strDate = mdformat.format(calendar.getTime());
         return calendar.getTimeInMillis();
     }
 

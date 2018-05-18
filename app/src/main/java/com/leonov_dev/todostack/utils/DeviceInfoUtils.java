@@ -3,22 +3,15 @@ package com.leonov_dev.todostack.utils;
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.provider.Settings;
-import android.util.Log;
-import android.view.View;
 
 import com.leonov_dev.todostack.data.InstalledApp;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
 
 public class DeviceInfoUtils {
