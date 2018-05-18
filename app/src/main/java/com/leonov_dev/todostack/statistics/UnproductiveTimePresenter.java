@@ -114,9 +114,12 @@ public class UnproductiveTimePresenter implements UnproductiveTimeContract.Prese
                 for (UsageStats usageStat : usageStats) {
                         String packageName = usageStat.getPackageName();
                     if (appUsageMap.containsKey(packageName)) {
+                        //TODO some apps are listed twice fix it
                         /**
                          * If App that has data about duration is in list
                          * get the usage duration, concert with time stamp and put back in map
+                         *
+                         * Create totalDuration length
                          */
                         InstalledApp bufApp = appUsageMap.get(packageName);
                         bufApp.setUsageLong(usageStat.getTotalTimeInForeground());
@@ -125,10 +128,14 @@ public class UnproductiveTimePresenter implements UnproductiveTimeContract.Prese
                         appUsageMap.put(packageName, bufApp);
                     }
                 }
-
                 List<InstalledApp> listOfApps = new ArrayList(appUsageMap.values());
                 Collections.sort(listOfApps);
                 mView.showListOfApps(listOfApps);
+                long totalDuration = 0;
+                for (InstalledApp installedApp : listOfApps){
+                    totalDuration += installedApp.getUsageLong();
+                }
+                mView.showUnproductiveTime(formatter.format(new Date(totalDuration)));
             }
         }
     }

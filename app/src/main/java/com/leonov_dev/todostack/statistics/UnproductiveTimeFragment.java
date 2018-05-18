@@ -58,11 +58,14 @@ public class UnproductiveTimeFragment extends dagger.android.support.DaggerFragm
     private LinearLayout mPermissionErrorLinearLayout;
     private Button mPermissionErrorButton;
 
+    private TextView mTotalUnproductiveTimeTV;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_unproductive_time, container, false);
         mListView = rootView.findViewById(R.id.list_of_installed_apps);
+        mTotalUnproductiveTimeTV = rootView.findViewById(R.id.unproductive_time_spen_on_phone);
         mPermissionErrorLinearLayout = rootView.findViewById(R.id.permission_error_linear_layout);
         mPermissionErrorButton = rootView.findViewById(R.id.give_permission_button);
         mPermissionErrorButton.setOnClickListener(new View.OnClickListener() {
@@ -105,6 +108,11 @@ public class UnproductiveTimeFragment extends dagger.android.support.DaggerFragm
     public void showPermissionError() {
         mListView.setVisibility(View.GONE);
         mPermissionErrorLinearLayout.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showUnproductiveTime(String timeSpentOnPhone) {
+        mTotalUnproductiveTimeTV.setText(timeSpentOnPhone);
     }
 
     private class AppsAdapter extends ArrayAdapter<InstalledApp>{

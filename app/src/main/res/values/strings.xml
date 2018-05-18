@@ -58,6 +58,7 @@
     <string name="notification_title">Time for ToDo</string>
     <string name="todo_stack_drawer_title">ToDo Stack</string>
     <string name="drawer_description">Advanced productivity app</string>
+    <string name="unproductive_time_spent_on_phone">Total time spent on phone:</string>
 
 
 </resources>

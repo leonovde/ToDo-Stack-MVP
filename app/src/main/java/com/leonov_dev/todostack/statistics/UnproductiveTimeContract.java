@@ -14,6 +14,8 @@ public interface UnproductiveTimeContract {
 
         void showPermissionError();
 
+        void showUnproductiveTime(String timeSpentOnPhone);
+
 
     }
 
