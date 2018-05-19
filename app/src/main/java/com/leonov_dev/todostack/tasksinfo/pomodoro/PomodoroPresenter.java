@@ -22,6 +22,7 @@ public class PomodoroPresenter implements PomodoroContract.Presenter {
 
     private long mTaskId;
     private long mTaskTime;
+    private long mTaskTimeSpent;
 
     private Context mContext;
 
@@ -58,6 +59,7 @@ public class PomodoroPresenter implements PomodoroContract.Presenter {
                     return;
                 }
                 mTaskTime = task.getDuration();
+                mTaskTimeSpent = task.getTimeSpent();
                 fillTodo(task);
             }
             @Override
@@ -97,7 +99,7 @@ public class PomodoroPresenter implements PomodoroContract.Presenter {
         String startRestCaption = mContext.getString(R.string.start_the_rest_pomodoro);
         if (startCaption.equals(currentCaption)){
             mView.setButtonCation(stopCatpion);
-            if (mTaskTime < TWENTY_FIVE_MIN){
+            if (mTaskTime < TWENTY_FIVE_MIN && mTaskTimeSpent >= mTaskTime){
                 mView.startTask(mTaskTime);
             } else {
                 mView.startTask(TWENTY_FIVE_MIN);

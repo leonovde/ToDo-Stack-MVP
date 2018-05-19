@@ -64,6 +64,7 @@ public class StatisticsActivity extends DaggerAppCompatActivity implements
         mViewPagerMode.setAdapter(modeAdapter);
         mTabLayout = findViewById(R.id.modes_tab_view);
         mTabLayout.setupWithViewPager(mViewPagerMode);
+
     }
 
     @Override
