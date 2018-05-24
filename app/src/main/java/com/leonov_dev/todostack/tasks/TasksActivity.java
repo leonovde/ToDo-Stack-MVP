@@ -168,7 +168,6 @@ public class TasksActivity extends DaggerAppCompatActivity
     public void showNoTasks() {
         mListView.setVisibility(View.GONE);
         mNoTasksLayoutWrapper.setVisibility(View.VISIBLE);
-        //TODO hide the list view and show message in the center "No TODOs are made"
     }
 
     @Override
@@ -190,7 +189,6 @@ public class TasksActivity extends DaggerAppCompatActivity
 
     @Override
     public void showSuccessfullySavedMessage() {
-        //TODO provide callback form AddTask Presenter
         showMessage(getString(R.string.todo_succesfully_created));
     }
 

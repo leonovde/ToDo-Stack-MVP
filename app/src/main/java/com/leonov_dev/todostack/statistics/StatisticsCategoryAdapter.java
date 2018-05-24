@@ -14,7 +14,7 @@ import javax.inject.Inject;
 
 
 public class StatisticsCategoryAdapter extends FragmentPagerAdapter {
-    //TODO switch to FragmentManager, not support one
+
     private Context mContext;
 
     private final String LOG_TAG = StatisticsCategoryAdapter.class.getSimpleName();

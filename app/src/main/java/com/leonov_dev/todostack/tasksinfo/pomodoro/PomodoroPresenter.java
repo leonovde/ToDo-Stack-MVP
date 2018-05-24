@@ -47,7 +47,7 @@ public class PomodoroPresenter implements PomodoroContract.Presenter {
 
     @Override
     public void dropView() {
-        //TODO add time spent
+        //TODO add time spent if mode isn't Pomodoro
         mView = null;
     }
 
@@ -73,7 +73,6 @@ public class PomodoroPresenter implements PomodoroContract.Presenter {
         mTasksRepository.getTask(mTaskId, new TaskDataSoruce.GetTaskCallback() {
             @Override
             public void onTaskLoaded(Task task) {
-                //TODO add time spent
                 if (task != null) {
                     task.setTimeSpent((long)timeSpent);
                     mTasksRepository.updateTask(task);
